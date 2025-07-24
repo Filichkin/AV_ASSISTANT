@@ -14,8 +14,9 @@ class Config(BaseSettings):
     COLLECTION_NAME: str = 'assistant_data'
     MAX_CHUNK_SIZE: int = 512
     CHUNK_OVERLAP: int = 50
+    SHOP_DATA_URL: str = 'app/database/shop_data.json'
 
-    LM_MODEL_NAME: str = (
+    LLM_MODEL_NAME: str = (
         'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2'
         )
     MISTRAL_MODEL_NAME: str = 'mistral-medium-2505'
@@ -52,7 +53,7 @@ settings = Config()
 
 
 def get_db_url():
-    return (f'postgresql+asyncpg://{settings.POSTGRES_USER}:'
+    return (f'postgresql+psycopg2://{settings.POSTGRES_USER}:'
             f'{settings.POSTGRES_PASSWORD}@'
             f'{settings.POSTGRES_HOST}:{settings.DATABASE_PORT}/'
             f'{settings.POSTGRES_DB}'
