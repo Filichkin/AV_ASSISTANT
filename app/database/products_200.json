@@ -1,0 +1,2002 @@
+[
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 39971 руб.",
+        "metadata": {
+            "id": "1",
+            "type": "product",
+            "category": "audio",
+            "price": 39971,
+            "stock": 7
+        }
+    },
+    {
+        "text": "iPhone: характеристики зависят от модели, цена 40415 руб.",
+        "metadata": {
+            "id": "2",
+            "type": "product",
+            "category": "phones",
+            "price": 40415,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Realme Narzo: характеристики зависят от модели, цена 55962 руб.",
+        "metadata": {
+            "id": "3",
+            "type": "product",
+            "category": "phones",
+            "price": 55962,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Nespresso Essenza: характеристики зависят от модели, цена 54017 руб.",
+        "metadata": {
+            "id": "4",
+            "type": "product",
+            "category": "kitchen",
+            "price": 54017,
+            "stock": 1
+        }
+    },
+    {
+        "text": "JBL Tune: характеристики зависят от модели, цена 24935 руб.",
+        "metadata": {
+            "id": "5",
+            "type": "product",
+            "category": "audio",
+            "price": 24935,
+            "stock": 5
+        }
+    },
+    {
+        "text": "iPad: характеристики зависят от модели, цена 26404 руб.",
+        "metadata": {
+            "id": "6",
+            "type": "product",
+            "category": "tablets",
+            "price": 26404,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Razor E100: характеристики зависят от модели, цена 45992 руб.",
+        "metadata": {
+            "id": "7",
+            "type": "product",
+            "category": "transport",
+            "price": 45992,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Samsung Galaxy: характеристики зависят от модели, цена 45420 руб.",
+        "metadata": {
+            "id": "8",
+            "type": "product",
+            "category": "phones",
+            "price": 45420,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Philips Airfryer: характеристики зависят от модели, цена 46263 руб.",
+        "metadata": {
+            "id": "9",
+            "type": "product",
+            "category": "appliances",
+            "price": 46263,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Bose QC45: характеристики зависят от модели, цена 22271 руб.",
+        "metadata": {
+            "id": "10",
+            "type": "product",
+            "category": "audio",
+            "price": 22271,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Lenovo IdeaPad: характеристики зависят от модели, цена 14708 руб.",
+        "metadata": {
+            "id": "11",
+            "type": "product",
+            "category": "laptops",
+            "price": 14708,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Samsung Galaxy: характеристики зависят от модели, цена 14191 руб.",
+        "metadata": {
+            "id": "12",
+            "type": "product",
+            "category": "phones",
+            "price": 14191,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 28010 руб.",
+        "metadata": {
+            "id": "13",
+            "type": "product",
+            "category": "audio",
+            "price": 28010,
+            "stock": 1
+        }
+    },
+    {
+        "text": "DeLonghi Magnifica: характеристики зависят от модели, цена 58008 руб.",
+        "metadata": {
+            "id": "14",
+            "type": "product",
+            "category": "kitchen",
+            "price": 58008,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Sony Alpha: характеристики зависят от модели, цена 19113 руб.",
+        "metadata": {
+            "id": "15",
+            "type": "product",
+            "category": "cameras",
+            "price": 19113,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Bose QC45: характеристики зависят от модели, цена 18080 руб.",
+        "metadata": {
+            "id": "16",
+            "type": "product",
+            "category": "audio",
+            "price": 18080,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Samsung Galaxy Tab: характеристики зависят от модели, цена 14808 руб.",
+        "metadata": {
+            "id": "17",
+            "type": "product",
+            "category": "tablets",
+            "price": 14808,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Asus ZenBook: характеристики зависят от модели, цена 56858 руб.",
+        "metadata": {
+            "id": "18",
+            "type": "product",
+            "category": "laptops",
+            "price": 56858,
+            "stock": 2
+        }
+    },
+    {
+        "text": "JBL Tune: характеристики зависят от модели, цена 25763 руб.",
+        "metadata": {
+            "id": "19",
+            "type": "product",
+            "category": "audio",
+            "price": 25763,
+            "stock": 1
+        }
+    },
+    {
+        "text": "iRobot Roomba: характеристики зависят от модели, цена 23824 руб.",
+        "metadata": {
+            "id": "20",
+            "type": "product",
+            "category": "appliances",
+            "price": 23824,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Huawei MatePad: характеристики зависят от модели, цена 58262 руб.",
+        "metadata": {
+            "id": "21",
+            "type": "product",
+            "category": "tablets",
+            "price": 58262,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Asus ZenBook: характеристики зависят от модели, цена 32402 руб.",
+        "metadata": {
+            "id": "22",
+            "type": "product",
+            "category": "laptops",
+            "price": 32402,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Realme Narzo: характеристики зависят от модели, цена 36825 руб.",
+        "metadata": {
+            "id": "23",
+            "type": "product",
+            "category": "phones",
+            "price": 36825,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Dell Inspiron: характеристики зависят от модели, цена 20420 руб.",
+        "metadata": {
+            "id": "24",
+            "type": "product",
+            "category": "laptops",
+            "price": 20420,
+            "stock": 5
+        }
+    },
+    {
+        "text": "Apple Watch: характеристики зависят от модели, цена 41864 руб.",
+        "metadata": {
+            "id": "25",
+            "type": "product",
+            "category": "wearables",
+            "price": 41864,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Samsung Galaxy Watch: характеристики зависят от модели, цена 11317 руб.",
+        "metadata": {
+            "id": "26",
+            "type": "product",
+            "category": "wearables",
+            "price": 11317,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Apple Watch: характеристики зависят от модели, цена 13072 руб.",
+        "metadata": {
+            "id": "27",
+            "type": "product",
+            "category": "wearables",
+            "price": 13072,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Xbox Series X: характеристики зависят от модели, цена 50779 руб.",
+        "metadata": {
+            "id": "28",
+            "type": "product",
+            "category": "gaming",
+            "price": 50779,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Samsung Galaxy: характеристики зависят от модели, цена 55147 руб.",
+        "metadata": {
+            "id": "29",
+            "type": "product",
+            "category": "phones",
+            "price": 55147,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Razor E100: характеристики зависят от модели, цена 12491 руб.",
+        "metadata": {
+            "id": "30",
+            "type": "product",
+            "category": "transport",
+            "price": 12491,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Canon EOS: характеристики зависят от модели, цена 14653 руб.",
+        "metadata": {
+            "id": "31",
+            "type": "product",
+            "category": "cameras",
+            "price": 14653,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Philips Airfryer: характеристики зависят от модели, цена 43615 руб.",
+        "metadata": {
+            "id": "32",
+            "type": "product",
+            "category": "appliances",
+            "price": 43615,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Apple Watch: характеристики зависят от модели, цена 13385 руб.",
+        "metadata": {
+            "id": "33",
+            "type": "product",
+            "category": "wearables",
+            "price": 13385,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Roborock S7: характеристики зависят от модели, цена 32527 руб.",
+        "metadata": {
+            "id": "34",
+            "type": "product",
+            "category": "appliances",
+            "price": 32527,
+            "stock": 5
+        }
+    },
+    {
+        "text": "Fujifilm X-T30: характеристики зависят от модели, цена 33141 руб.",
+        "metadata": {
+            "id": "35",
+            "type": "product",
+            "category": "cameras",
+            "price": 33141,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Sony Alpha: характеристики зависят от модели, цена 57591 руб.",
+        "metadata": {
+            "id": "36",
+            "type": "product",
+            "category": "cameras",
+            "price": 57591,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Ninebot KickScooter: характеристики зависят от модели, цена 52190 руб.",
+        "metadata": {
+            "id": "37",
+            "type": "product",
+            "category": "transport",
+            "price": 52190,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Nespresso Essenza: характеристики зависят от модели, цена 22800 руб.",
+        "metadata": {
+            "id": "38",
+            "type": "product",
+            "category": "kitchen",
+            "price": 22800,
+            "stock": 4
+        }
+    },
+    {
+        "text": "iPad: характеристики зависят от модели, цена 57743 руб.",
+        "metadata": {
+            "id": "39",
+            "type": "product",
+            "category": "tablets",
+            "price": 57743,
+            "stock": 1
+        }
+    },
+    {
+        "text": "iPhone: характеристики зависят от модели, цена 33550 руб.",
+        "metadata": {
+            "id": "40",
+            "type": "product",
+            "category": "phones",
+            "price": 33550,
+            "stock": 7
+        }
+    },
+    {
+        "text": "PlayStation 5: характеристики зависят от модели, цена 16173 руб.",
+        "metadata": {
+            "id": "41",
+            "type": "product",
+            "category": "gaming",
+            "price": 16173,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Razor E100: характеристики зависят от модели, цена 48623 руб.",
+        "metadata": {
+            "id": "42",
+            "type": "product",
+            "category": "transport",
+            "price": 48623,
+            "stock": 1
+        }
+    },
+    {
+        "text": "iPhone: характеристики зависят от модели, цена 16849 руб.",
+        "metadata": {
+            "id": "43",
+            "type": "product",
+            "category": "phones",
+            "price": 16849,
+            "stock": 1
+        }
+    },
+    {
+        "text": "DeLonghi Magnifica: характеристики зависят от модели, цена 18106 руб.",
+        "metadata": {
+            "id": "44",
+            "type": "product",
+            "category": "kitchen",
+            "price": 18106,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Fujifilm X-T30: характеристики зависят от модели, цена 27785 руб.",
+        "metadata": {
+            "id": "45",
+            "type": "product",
+            "category": "cameras",
+            "price": 27785,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Dyson V11: характеристики зависят от модели, цена 50906 руб.",
+        "metadata": {
+            "id": "46",
+            "type": "product",
+            "category": "appliances",
+            "price": 50906,
+            "stock": 9
+        }
+    },
+    {
+        "text": "DeLonghi Magnifica: характеристики зависят от модели, цена 10915 руб.",
+        "metadata": {
+            "id": "47",
+            "type": "product",
+            "category": "kitchen",
+            "price": 10915,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Samsung Galaxy Tab: характеристики зависят от модели, цена 48605 руб.",
+        "metadata": {
+            "id": "48",
+            "type": "product",
+            "category": "tablets",
+            "price": 48605,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Realme Narzo: характеристики зависят от модели, цена 18428 руб.",
+        "metadata": {
+            "id": "49",
+            "type": "product",
+            "category": "phones",
+            "price": 18428,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Bosch Tassimo: характеристики зависят от модели, цена 13675 руб.",
+        "metadata": {
+            "id": "50",
+            "type": "product",
+            "category": "kitchen",
+            "price": 13675,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Sony Alpha: характеристики зависят от модели, цена 27967 руб.",
+        "metadata": {
+            "id": "51",
+            "type": "product",
+            "category": "cameras",
+            "price": 27967,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Sony WH-1000XM4: характеристики зависят от модели, цена 11532 руб.",
+        "metadata": {
+            "id": "52",
+            "type": "product",
+            "category": "audio",
+            "price": 11532,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Dell Inspiron: характеристики зависят от модели, цена 50217 руб.",
+        "metadata": {
+            "id": "53",
+            "type": "product",
+            "category": "laptops",
+            "price": 50217,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Asus ZenBook: характеристики зависят от модели, цена 24544 руб.",
+        "metadata": {
+            "id": "54",
+            "type": "product",
+            "category": "laptops",
+            "price": 24544,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Xiaomi Redmi Note: характеристики зависят от модели, цена 46073 руб.",
+        "metadata": {
+            "id": "55",
+            "type": "product",
+            "category": "phones",
+            "price": 46073,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Sony WH-1000XM4: характеристики зависят от модели, цена 54982 руб.",
+        "metadata": {
+            "id": "56",
+            "type": "product",
+            "category": "audio",
+            "price": 54982,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Fitbit Versa: характеристики зависят от модели, цена 39490 руб.",
+        "metadata": {
+            "id": "57",
+            "type": "product",
+            "category": "wearables",
+            "price": 39490,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 45178 руб.",
+        "metadata": {
+            "id": "58",
+            "type": "product",
+            "category": "audio",
+            "price": 45178,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Sony WH-1000XM4: характеристики зависят от модели, цена 56241 руб.",
+        "metadata": {
+            "id": "59",
+            "type": "product",
+            "category": "audio",
+            "price": 56241,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 55635 руб.",
+        "metadata": {
+            "id": "60",
+            "type": "product",
+            "category": "audio",
+            "price": 55635,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Kugoo S3: характеристики зависят от модели, цена 35362 руб.",
+        "metadata": {
+            "id": "61",
+            "type": "product",
+            "category": "transport",
+            "price": 35362,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Xiaomi Redmi Note: характеристики зависят от модели, цена 16133 руб.",
+        "metadata": {
+            "id": "62",
+            "type": "product",
+            "category": "phones",
+            "price": 16133,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Nikon D3500: характеристики зависят от модели, цена 16718 руб.",
+        "metadata": {
+            "id": "63",
+            "type": "product",
+            "category": "cameras",
+            "price": 16718,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Dell Inspiron: характеристики зависят от модели, цена 51241 руб.",
+        "metadata": {
+            "id": "64",
+            "type": "product",
+            "category": "laptops",
+            "price": 51241,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Kugoo S3: характеристики зависят от модели, цена 14113 руб.",
+        "metadata": {
+            "id": "65",
+            "type": "product",
+            "category": "transport",
+            "price": 14113,
+            "stock": 5
+        }
+    },
+    {
+        "text": "Sony Alpha: характеристики зависят от модели, цена 55895 руб.",
+        "metadata": {
+            "id": "66",
+            "type": "product",
+            "category": "cameras",
+            "price": 55895,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Huawei MatePad: характеристики зависят от модели, цена 27639 руб.",
+        "metadata": {
+            "id": "67",
+            "type": "product",
+            "category": "tablets",
+            "price": 27639,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Steam Deck: характеристики зависят от модели, цена 17303 руб.",
+        "metadata": {
+            "id": "68",
+            "type": "product",
+            "category": "gaming",
+            "price": 17303,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Samsung Galaxy Watch: характеристики зависят от модели, цена 19845 руб.",
+        "metadata": {
+            "id": "69",
+            "type": "product",
+            "category": "wearables",
+            "price": 19845,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Realme Narzo: характеристики зависят от модели, цена 28828 руб.",
+        "metadata": {
+            "id": "70",
+            "type": "product",
+            "category": "phones",
+            "price": 28828,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Huawei MatePad: характеристики зависят от модели, цена 17147 руб.",
+        "metadata": {
+            "id": "71",
+            "type": "product",
+            "category": "tablets",
+            "price": 17147,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Ninebot KickScooter: характеристики зависят от модели, цена 56399 руб.",
+        "metadata": {
+            "id": "72",
+            "type": "product",
+            "category": "transport",
+            "price": 56399,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Realme Narzo: характеристики зависят от модели, цена 55042 руб.",
+        "metadata": {
+            "id": "73",
+            "type": "product",
+            "category": "phones",
+            "price": 55042,
+            "stock": 5
+        }
+    },
+    {
+        "text": "iPhone: характеристики зависят от модели, цена 49410 руб.",
+        "metadata": {
+            "id": "74",
+            "type": "product",
+            "category": "phones",
+            "price": 49410,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Fitbit Versa: характеристики зависят от модели, цена 21593 руб.",
+        "metadata": {
+            "id": "75",
+            "type": "product",
+            "category": "wearables",
+            "price": 21593,
+            "stock": 6
+        }
+    },
+    {
+        "text": "iPhone: характеристики зависят от модели, цена 32378 руб.",
+        "metadata": {
+            "id": "76",
+            "type": "product",
+            "category": "phones",
+            "price": 32378,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 14357 руб.",
+        "metadata": {
+            "id": "77",
+            "type": "product",
+            "category": "audio",
+            "price": 14357,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Xiaomi Redmi Note: характеристики зависят от модели, цена 50520 руб.",
+        "metadata": {
+            "id": "78",
+            "type": "product",
+            "category": "phones",
+            "price": 50520,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Canon EOS: характеристики зависят от модели, цена 44299 руб.",
+        "metadata": {
+            "id": "79",
+            "type": "product",
+            "category": "cameras",
+            "price": 44299,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Asus ZenBook: характеристики зависят от модели, цена 27809 руб.",
+        "metadata": {
+            "id": "80",
+            "type": "product",
+            "category": "laptops",
+            "price": 27809,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Bose QC45: характеристики зависят от модели, цена 58919 руб.",
+        "metadata": {
+            "id": "81",
+            "type": "product",
+            "category": "audio",
+            "price": 58919,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Sony WH-1000XM4: характеристики зависят от модели, цена 47767 руб.",
+        "metadata": {
+            "id": "82",
+            "type": "product",
+            "category": "audio",
+            "price": 47767,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Philips Airfryer: характеристики зависят от модели, цена 11512 руб.",
+        "metadata": {
+            "id": "83",
+            "type": "product",
+            "category": "appliances",
+            "price": 11512,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Samsung Galaxy Tab: характеристики зависят от модели, цена 58661 руб.",
+        "metadata": {
+            "id": "84",
+            "type": "product",
+            "category": "tablets",
+            "price": 58661,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Roborock S7: характеристики зависят от модели, цена 35103 руб.",
+        "metadata": {
+            "id": "85",
+            "type": "product",
+            "category": "appliances",
+            "price": 35103,
+            "stock": 1
+        }
+    },
+    {
+        "text": "HP Pavilion: характеристики зависят от модели, цена 32846 руб.",
+        "metadata": {
+            "id": "86",
+            "type": "product",
+            "category": "laptops",
+            "price": 32846,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Nikon D3500: характеристики зависят от модели, цена 10033 руб.",
+        "metadata": {
+            "id": "87",
+            "type": "product",
+            "category": "cameras",
+            "price": 10033,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Xbox Series X: характеристики зависят от модели, цена 48202 руб.",
+        "metadata": {
+            "id": "88",
+            "type": "product",
+            "category": "gaming",
+            "price": 48202,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Samsung Galaxy Watch: характеристики зависят от модели, цена 11845 руб.",
+        "metadata": {
+            "id": "89",
+            "type": "product",
+            "category": "wearables",
+            "price": 11845,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Nespresso Essenza: характеристики зависят от модели, цена 31944 руб.",
+        "metadata": {
+            "id": "90",
+            "type": "product",
+            "category": "kitchen",
+            "price": 31944,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Bose QC45: характеристики зависят от модели, цена 11665 руб.",
+        "metadata": {
+            "id": "91",
+            "type": "product",
+            "category": "audio",
+            "price": 11665,
+            "stock": 7
+        }
+    },
+    {
+        "text": "iPhone: характеристики зависят от модели, цена 34755 руб.",
+        "metadata": {
+            "id": "92",
+            "type": "product",
+            "category": "phones",
+            "price": 34755,
+            "stock": 1
+        }
+    },
+    {
+        "text": "iPhone: характеристики зависят от модели, цена 57047 руб.",
+        "metadata": {
+            "id": "93",
+            "type": "product",
+            "category": "phones",
+            "price": 57047,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Fujifilm X-T30: характеристики зависят от модели, цена 20171 руб.",
+        "metadata": {
+            "id": "94",
+            "type": "product",
+            "category": "cameras",
+            "price": 20171,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Roborock S7: характеристики зависят от модели, цена 10008 руб.",
+        "metadata": {
+            "id": "95",
+            "type": "product",
+            "category": "appliances",
+            "price": 10008,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Kugoo S3: характеристики зависят от модели, цена 16484 руб.",
+        "metadata": {
+            "id": "96",
+            "type": "product",
+            "category": "transport",
+            "price": 16484,
+            "stock": 1
+        }
+    },
+    {
+        "text": "iPad: характеристики зависят от модели, цена 46265 руб.",
+        "metadata": {
+            "id": "97",
+            "type": "product",
+            "category": "tablets",
+            "price": 46265,
+            "stock": 7
+        }
+    },
+    {
+        "text": "iPad: характеристики зависят от модели, цена 20628 руб.",
+        "metadata": {
+            "id": "98",
+            "type": "product",
+            "category": "tablets",
+            "price": 20628,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Krups EA: характеристики зависят от модели, цена 42343 руб.",
+        "metadata": {
+            "id": "99",
+            "type": "product",
+            "category": "kitchen",
+            "price": 42343,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Nespresso Essenza: характеристики зависят от модели, цена 46070 руб.",
+        "metadata": {
+            "id": "100",
+            "type": "product",
+            "category": "kitchen",
+            "price": 46070,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Xiaomi Scooter: характеристики зависят от модели, цена 33185 руб.",
+        "metadata": {
+            "id": "101",
+            "type": "product",
+            "category": "transport",
+            "price": 33185,
+            "stock": 3
+        }
+    },
+    {
+        "text": "JBL Tune: характеристики зависят от модели, цена 48439 руб.",
+        "metadata": {
+            "id": "102",
+            "type": "product",
+            "category": "audio",
+            "price": 48439,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 52739 руб.",
+        "metadata": {
+            "id": "103",
+            "type": "product",
+            "category": "audio",
+            "price": 52739,
+            "stock": 5
+        }
+    },
+    {
+        "text": "Samsung Galaxy Watch: характеристики зависят от модели, цена 34865 руб.",
+        "metadata": {
+            "id": "104",
+            "type": "product",
+            "category": "wearables",
+            "price": 34865,
+            "stock": 2
+        }
+    },
+    {
+        "text": "iPhone: характеристики зависят от модели, цена 10331 руб.",
+        "metadata": {
+            "id": "105",
+            "type": "product",
+            "category": "phones",
+            "price": 10331,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Fujifilm X-T30: характеристики зависят от модели, цена 26149 руб.",
+        "metadata": {
+            "id": "106",
+            "type": "product",
+            "category": "cameras",
+            "price": 26149,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Krups EA: характеристики зависят от модели, цена 19242 руб.",
+        "metadata": {
+            "id": "107",
+            "type": "product",
+            "category": "kitchen",
+            "price": 19242,
+            "stock": 10
+        }
+    },
+    {
+        "text": "HP Pavilion: характеристики зависят от модели, цена 19222 руб.",
+        "metadata": {
+            "id": "108",
+            "type": "product",
+            "category": "laptops",
+            "price": 19222,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Fujifilm X-T30: характеристики зависят от модели, цена 45860 руб.",
+        "metadata": {
+            "id": "109",
+            "type": "product",
+            "category": "cameras",
+            "price": 45860,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Bose QC45: характеристики зависят от модели, цена 55750 руб.",
+        "metadata": {
+            "id": "110",
+            "type": "product",
+            "category": "audio",
+            "price": 55750,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Samsung Galaxy: характеристики зависят от модели, цена 11189 руб.",
+        "metadata": {
+            "id": "111",
+            "type": "product",
+            "category": "phones",
+            "price": 11189,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 11005 руб.",
+        "metadata": {
+            "id": "112",
+            "type": "product",
+            "category": "audio",
+            "price": 11005,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Nikon D3500: характеристики зависят от модели, цена 20425 руб.",
+        "metadata": {
+            "id": "113",
+            "type": "product",
+            "category": "cameras",
+            "price": 20425,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Bosch Tassimo: характеристики зависят от модели, цена 13028 руб.",
+        "metadata": {
+            "id": "114",
+            "type": "product",
+            "category": "kitchen",
+            "price": 13028,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Sony WH-1000XM4: характеристики зависят от модели, цена 16352 руб.",
+        "metadata": {
+            "id": "115",
+            "type": "product",
+            "category": "audio",
+            "price": 16352,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Roborock S7: характеристики зависят от модели, цена 10243 руб.",
+        "metadata": {
+            "id": "116",
+            "type": "product",
+            "category": "appliances",
+            "price": 10243,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Bose QC45: характеристики зависят от модели, цена 37009 руб.",
+        "metadata": {
+            "id": "117",
+            "type": "product",
+            "category": "audio",
+            "price": 37009,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Bosch Tassimo: характеристики зависят от модели, цена 13853 руб.",
+        "metadata": {
+            "id": "118",
+            "type": "product",
+            "category": "kitchen",
+            "price": 13853,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Ninebot KickScooter: характеристики зависят от модели, цена 31155 руб.",
+        "metadata": {
+            "id": "119",
+            "type": "product",
+            "category": "transport",
+            "price": 31155,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 36618 руб.",
+        "metadata": {
+            "id": "120",
+            "type": "product",
+            "category": "audio",
+            "price": 36618,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Samsung Galaxy Watch: характеристики зависят от модели, цена 56826 руб.",
+        "metadata": {
+            "id": "121",
+            "type": "product",
+            "category": "wearables",
+            "price": 56826,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Fitbit Versa: характеристики зависят от модели, цена 24222 руб.",
+        "metadata": {
+            "id": "122",
+            "type": "product",
+            "category": "wearables",
+            "price": 24222,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 21391 руб.",
+        "metadata": {
+            "id": "123",
+            "type": "product",
+            "category": "audio",
+            "price": 21391,
+            "stock": 5
+        }
+    },
+    {
+        "text": "Krups EA: характеристики зависят от модели, цена 55057 руб.",
+        "metadata": {
+            "id": "124",
+            "type": "product",
+            "category": "kitchen",
+            "price": 55057,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Krups EA: характеристики зависят от модели, цена 56361 руб.",
+        "metadata": {
+            "id": "125",
+            "type": "product",
+            "category": "kitchen",
+            "price": 56361,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Canon EOS: характеристики зависят от модели, цена 39415 руб.",
+        "metadata": {
+            "id": "126",
+            "type": "product",
+            "category": "cameras",
+            "price": 39415,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Razor E100: характеристики зависят от модели, цена 39418 руб.",
+        "metadata": {
+            "id": "127",
+            "type": "product",
+            "category": "transport",
+            "price": 39418,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Bosch Tassimo: характеристики зависят от модели, цена 11620 руб.",
+        "metadata": {
+            "id": "128",
+            "type": "product",
+            "category": "kitchen",
+            "price": 11620,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Realme Narzo: характеристики зависят от модели, цена 21941 руб.",
+        "metadata": {
+            "id": "129",
+            "type": "product",
+            "category": "phones",
+            "price": 21941,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Nikon D3500: характеристики зависят от модели, цена 56871 руб.",
+        "metadata": {
+            "id": "130",
+            "type": "product",
+            "category": "cameras",
+            "price": 56871,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Dyson V11: характеристики зависят от модели, цена 58156 руб.",
+        "metadata": {
+            "id": "131",
+            "type": "product",
+            "category": "appliances",
+            "price": 58156,
+            "stock": 5
+        }
+    },
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 32691 руб.",
+        "metadata": {
+            "id": "132",
+            "type": "product",
+            "category": "audio",
+            "price": 32691,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Roborock S7: характеристики зависят от модели, цена 14471 руб.",
+        "metadata": {
+            "id": "133",
+            "type": "product",
+            "category": "appliances",
+            "price": 14471,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Asus ZenBook: характеристики зависят от модели, цена 13026 руб.",
+        "metadata": {
+            "id": "134",
+            "type": "product",
+            "category": "laptops",
+            "price": 13026,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Samsung Galaxy: характеристики зависят от модели, цена 57060 руб.",
+        "metadata": {
+            "id": "135",
+            "type": "product",
+            "category": "phones",
+            "price": 57060,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Krups EA: характеристики зависят от модели, цена 21775 руб.",
+        "metadata": {
+            "id": "136",
+            "type": "product",
+            "category": "kitchen",
+            "price": 21775,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Krups EA: характеристики зависят от модели, цена 22341 руб.",
+        "metadata": {
+            "id": "137",
+            "type": "product",
+            "category": "kitchen",
+            "price": 22341,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Sony Alpha: характеристики зависят от модели, цена 23269 руб.",
+        "metadata": {
+            "id": "138",
+            "type": "product",
+            "category": "cameras",
+            "price": 23269,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Nintendo Switch: характеристики зависят от модели, цена 37945 руб.",
+        "metadata": {
+            "id": "139",
+            "type": "product",
+            "category": "gaming",
+            "price": 37945,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Dyson V11: характеристики зависят от модели, цена 28278 руб.",
+        "metadata": {
+            "id": "140",
+            "type": "product",
+            "category": "appliances",
+            "price": 28278,
+            "stock": 5
+        }
+    },
+    {
+        "text": "DeLonghi Magnifica: характеристики зависят от модели, цена 32454 руб.",
+        "metadata": {
+            "id": "141",
+            "type": "product",
+            "category": "kitchen",
+            "price": 32454,
+            "stock": 10
+        }
+    },
+    {
+        "text": "iRobot Roomba: характеристики зависят от модели, цена 39062 руб.",
+        "metadata": {
+            "id": "142",
+            "type": "product",
+            "category": "appliances",
+            "price": 39062,
+            "stock": 5
+        }
+    },
+    {
+        "text": "Nespresso Essenza: характеристики зависят от модели, цена 16995 руб.",
+        "metadata": {
+            "id": "143",
+            "type": "product",
+            "category": "kitchen",
+            "price": 16995,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Roborock S7: характеристики зависят от модели, цена 34255 руб.",
+        "metadata": {
+            "id": "144",
+            "type": "product",
+            "category": "appliances",
+            "price": 34255,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Dyson V11: характеристики зависят от модели, цена 54719 руб.",
+        "metadata": {
+            "id": "145",
+            "type": "product",
+            "category": "appliances",
+            "price": 54719,
+            "stock": 9
+        }
+    },
+    {
+        "text": "iRobot Roomba: характеристики зависят от модели, цена 55530 руб.",
+        "metadata": {
+            "id": "146",
+            "type": "product",
+            "category": "appliances",
+            "price": 55530,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Xiaomi Scooter: характеристики зависят от модели, цена 26136 руб.",
+        "metadata": {
+            "id": "147",
+            "type": "product",
+            "category": "transport",
+            "price": 26136,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Ninebot KickScooter: характеристики зависят от модели, цена 10979 руб.",
+        "metadata": {
+            "id": "148",
+            "type": "product",
+            "category": "transport",
+            "price": 10979,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Sony Alpha: характеристики зависят от модели, цена 37638 руб.",
+        "metadata": {
+            "id": "149",
+            "type": "product",
+            "category": "cameras",
+            "price": 37638,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Xbox Series X: характеристики зависят от модели, цена 16028 руб.",
+        "metadata": {
+            "id": "150",
+            "type": "product",
+            "category": "gaming",
+            "price": 16028,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Xiaomi Scooter: характеристики зависят от модели, цена 13519 руб.",
+        "metadata": {
+            "id": "151",
+            "type": "product",
+            "category": "transport",
+            "price": 13519,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Xbox Series X: характеристики зависят от модели, цена 33339 руб.",
+        "metadata": {
+            "id": "152",
+            "type": "product",
+            "category": "gaming",
+            "price": 33339,
+            "stock": 6
+        }
+    },
+    {
+        "text": "iPhone: характеристики зависят от модели, цена 55299 руб.",
+        "metadata": {
+            "id": "153",
+            "type": "product",
+            "category": "phones",
+            "price": 55299,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Asus ZenBook: характеристики зависят от модели, цена 34425 руб.",
+        "metadata": {
+            "id": "154",
+            "type": "product",
+            "category": "laptops",
+            "price": 34425,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Samsung Galaxy Watch: характеристики зависят от модели, цена 45759 руб.",
+        "metadata": {
+            "id": "155",
+            "type": "product",
+            "category": "wearables",
+            "price": 45759,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Realme Narzo: характеристики зависят от модели, цена 36575 руб.",
+        "metadata": {
+            "id": "156",
+            "type": "product",
+            "category": "phones",
+            "price": 36575,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Kugoo S3: характеристики зависят от модели, цена 23182 руб.",
+        "metadata": {
+            "id": "157",
+            "type": "product",
+            "category": "transport",
+            "price": 23182,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Sony WH-1000XM4: характеристики зависят от модели, цена 24269 руб.",
+        "metadata": {
+            "id": "158",
+            "type": "product",
+            "category": "audio",
+            "price": 24269,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Canon EOS: характеристики зависят от модели, цена 44451 руб.",
+        "metadata": {
+            "id": "159",
+            "type": "product",
+            "category": "cameras",
+            "price": 44451,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Samsung Galaxy Watch: характеристики зависят от модели, цена 53218 руб.",
+        "metadata": {
+            "id": "160",
+            "type": "product",
+            "category": "wearables",
+            "price": 53218,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Razor E100: характеристики зависят от модели, цена 19540 руб.",
+        "metadata": {
+            "id": "161",
+            "type": "product",
+            "category": "transport",
+            "price": 19540,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Steam Deck: характеристики зависят от модели, цена 40855 руб.",
+        "metadata": {
+            "id": "162",
+            "type": "product",
+            "category": "gaming",
+            "price": 40855,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Lenovo Tab: характеристики зависят от модели, цена 50124 руб.",
+        "metadata": {
+            "id": "163",
+            "type": "product",
+            "category": "tablets",
+            "price": 50124,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Xiaomi Redmi Note: характеристики зависят от модели, цена 33358 руб.",
+        "metadata": {
+            "id": "164",
+            "type": "product",
+            "category": "phones",
+            "price": 33358,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Sony Alpha: характеристики зависят от модели, цена 43237 руб.",
+        "metadata": {
+            "id": "165",
+            "type": "product",
+            "category": "cameras",
+            "price": 43237,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Asus ZenBook: характеристики зависят от модели, цена 52765 руб.",
+        "metadata": {
+            "id": "166",
+            "type": "product",
+            "category": "laptops",
+            "price": 52765,
+            "stock": 5
+        }
+    },
+    {
+        "text": "PlayStation 5: характеристики зависят от модели, цена 12938 руб.",
+        "metadata": {
+            "id": "167",
+            "type": "product",
+            "category": "gaming",
+            "price": 12938,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Samsung Galaxy Watch: характеристики зависят от модели, цена 24379 руб.",
+        "metadata": {
+            "id": "168",
+            "type": "product",
+            "category": "wearables",
+            "price": 24379,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Fitbit Versa: характеристики зависят от модели, цена 59672 руб.",
+        "metadata": {
+            "id": "169",
+            "type": "product",
+            "category": "wearables",
+            "price": 59672,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Sony WH-1000XM4: характеристики зависят от модели, цена 38960 руб.",
+        "metadata": {
+            "id": "170",
+            "type": "product",
+            "category": "audio",
+            "price": 38960,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Fujifilm X-T30: характеристики зависят от модели, цена 45061 руб.",
+        "metadata": {
+            "id": "171",
+            "type": "product",
+            "category": "cameras",
+            "price": 45061,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Apple Watch: характеристики зависят от модели, цена 22138 руб.",
+        "metadata": {
+            "id": "172",
+            "type": "product",
+            "category": "wearables",
+            "price": 22138,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Philips Airfryer: характеристики зависят от модели, цена 37221 руб.",
+        "metadata": {
+            "id": "173",
+            "type": "product",
+            "category": "appliances",
+            "price": 37221,
+            "stock": 4
+        }
+    },
+    {
+        "text": "Samsung Galaxy Watch: характеристики зависят от модели, цена 51194 руб.",
+        "metadata": {
+            "id": "174",
+            "type": "product",
+            "category": "wearables",
+            "price": 51194,
+            "stock": 6
+        }
+    },
+    {
+        "text": "DeLonghi Magnifica: характеристики зависят от модели, цена 44797 руб.",
+        "metadata": {
+            "id": "175",
+            "type": "product",
+            "category": "kitchen",
+            "price": 44797,
+            "stock": 10
+        }
+    },
+    {
+        "text": "iPad: характеристики зависят от модели, цена 15679 руб.",
+        "metadata": {
+            "id": "176",
+            "type": "product",
+            "category": "tablets",
+            "price": 15679,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Huawei MatePad: характеристики зависят от модели, цена 37827 руб.",
+        "metadata": {
+            "id": "177",
+            "type": "product",
+            "category": "tablets",
+            "price": 37827,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Anker Soundcore: характеристики зависят от модели, цена 49938 руб.",
+        "metadata": {
+            "id": "178",
+            "type": "product",
+            "category": "audio",
+            "price": 49938,
+            "stock": 6
+        }
+    },
+    {
+        "text": "iPhone: характеристики зависят от модели, цена 48702 руб.",
+        "metadata": {
+            "id": "179",
+            "type": "product",
+            "category": "phones",
+            "price": 48702,
+            "stock": 10
+        }
+    },
+    {
+        "text": "Steam Deck: характеристики зависят от модели, цена 34376 руб.",
+        "metadata": {
+            "id": "180",
+            "type": "product",
+            "category": "gaming",
+            "price": 34376,
+            "stock": 2
+        }
+    },
+    {
+        "text": "PlayStation 5: характеристики зависят от модели, цена 53292 руб.",
+        "metadata": {
+            "id": "181",
+            "type": "product",
+            "category": "gaming",
+            "price": 53292,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Lenovo IdeaPad: характеристики зависят от модели, цена 32671 руб.",
+        "metadata": {
+            "id": "182",
+            "type": "product",
+            "category": "laptops",
+            "price": 32671,
+            "stock": 4
+        }
+    },
+    {
+        "text": "HP Pavilion: характеристики зависят от модели, цена 15164 руб.",
+        "metadata": {
+            "id": "183",
+            "type": "product",
+            "category": "laptops",
+            "price": 15164,
+            "stock": 5
+        }
+    },
+    {
+        "text": "Xiaomi Redmi Note: характеристики зависят от модели, цена 21181 руб.",
+        "metadata": {
+            "id": "184",
+            "type": "product",
+            "category": "phones",
+            "price": 21181,
+            "stock": 3
+        }
+    },
+    {
+        "text": "iPad: характеристики зависят от модели, цена 27052 руб.",
+        "metadata": {
+            "id": "185",
+            "type": "product",
+            "category": "tablets",
+            "price": 27052,
+            "stock": 7
+        }
+    },
+    {
+        "text": "Fitbit Versa: характеристики зависят от модели, цена 37611 руб.",
+        "metadata": {
+            "id": "186",
+            "type": "product",
+            "category": "wearables",
+            "price": 37611,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Philips Airfryer: характеристики зависят от модели, цена 54320 руб.",
+        "metadata": {
+            "id": "187",
+            "type": "product",
+            "category": "appliances",
+            "price": 54320,
+            "stock": 5
+        }
+    },
+    {
+        "text": "Xiaomi Scooter: характеристики зависят от модели, цена 54016 руб.",
+        "metadata": {
+            "id": "188",
+            "type": "product",
+            "category": "transport",
+            "price": 54016,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Samsung Galaxy: характеристики зависят от модели, цена 53920 руб.",
+        "metadata": {
+            "id": "189",
+            "type": "product",
+            "category": "phones",
+            "price": 53920,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Asus ZenBook: характеристики зависят от модели, цена 20149 руб.",
+        "metadata": {
+            "id": "190",
+            "type": "product",
+            "category": "laptops",
+            "price": 20149,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Krups EA: характеристики зависят от модели, цена 36112 руб.",
+        "metadata": {
+            "id": "191",
+            "type": "product",
+            "category": "kitchen",
+            "price": 36112,
+            "stock": 1
+        }
+    },
+    {
+        "text": "Nintendo Switch: характеристики зависят от модели, цена 41206 руб.",
+        "metadata": {
+            "id": "192",
+            "type": "product",
+            "category": "gaming",
+            "price": 41206,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Asus ZenBook: характеристики зависят от модели, цена 38748 руб.",
+        "metadata": {
+            "id": "193",
+            "type": "product",
+            "category": "laptops",
+            "price": 38748,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Steam Deck: характеристики зависят от модели, цена 44362 руб.",
+        "metadata": {
+            "id": "194",
+            "type": "product",
+            "category": "gaming",
+            "price": 44362,
+            "stock": 2
+        }
+    },
+    {
+        "text": "JBL Tune: характеристики зависят от модели, цена 22432 руб.",
+        "metadata": {
+            "id": "195",
+            "type": "product",
+            "category": "audio",
+            "price": 22432,
+            "stock": 3
+        }
+    },
+    {
+        "text": "Samsung Galaxy Tab: характеристики зависят от модели, цена 29974 руб.",
+        "metadata": {
+            "id": "196",
+            "type": "product",
+            "category": "tablets",
+            "price": 29974,
+            "stock": 9
+        }
+    },
+    {
+        "text": "Nintendo Switch: характеристики зависят от модели, цена 57534 руб.",
+        "metadata": {
+            "id": "197",
+            "type": "product",
+            "category": "gaming",
+            "price": 57534,
+            "stock": 2
+        }
+    },
+    {
+        "text": "Xiaomi Redmi Note: характеристики зависят от модели, цена 27707 руб.",
+        "metadata": {
+            "id": "198",
+            "type": "product",
+            "category": "phones",
+            "price": 27707,
+            "stock": 6
+        }
+    },
+    {
+        "text": "Xiaomi Mi Band: характеристики зависят от модели, цена 45259 руб.",
+        "metadata": {
+            "id": "199",
+            "type": "product",
+            "category": "wearables",
+            "price": 45259,
+            "stock": 8
+        }
+    },
+    {
+        "text": "Fitbit Versa: характеристики зависят от модели, цена 35009 руб.",
+        "metadata": {
+            "id": "200",
+            "type": "product",
+            "category": "wearables",
+            "price": 35009,
+            "stock": 5
+        }
+    }
+]
