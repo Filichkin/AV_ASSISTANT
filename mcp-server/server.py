@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Dict, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 import httpx
 
 import uvicorn
@@ -61,5 +61,56 @@ def connect_to_pgvector() -> PGVector:
         raise
 
 
+def search_products(
+    query: str,
+    metadata_filter: Optional[Dict[str, Any]] = None,
+    k: int = 4,
+) -> List[Dict[str, Any]]:
+    """
+    Поиск продуктов по запросу и (опционально)
+    по метаданным в PostgreSQL/pgvector.
+
+    Args:
+        query (str): Текстовый запрос для поиска.
+        metadata_filter (dict | None): Фильтр по метаданным
+        (для PGVector при use_jsonb=True — равенство по ключам).
+        k (int): Количество результатов.
+
+    Returns:
+        list[dict]: Найденные документы с метаданными и скором.
+    """
+    try:
+        store = connect_to_pgvector()
+
+        # В PGVector доступен similarity_search_with_score.
+        # Параметр filter работает, если вы создавали
+        # PGVector с use_jsonb=True.
+        results = store.similarity_search_with_score(
+            query,
+            k=k,
+            filter=metadata_filter
+            )
+
+        logger.info(f'Найдено {len(results)} результатов для запроса: {query}')
+
+        formatted_results = []
+        for doc, score in results:
+            formatted_results.append(
+                {
+                    "text": doc.page_content,
+                    "metadata": doc.metadata,
+                    "similarity_score": score,
+                }
+            )
+        return formatted_results
+
+    except Exception as e:
+        logger.error(f'Ошибка при поиске в PGVector: {e}')
+        raise
+
+
 if __name__ == '__main__':
-    connect_to_pgvector()
+    for product in search_products(
+        query='какой у вас самый крутой пылесос?'
+    ):
+        print(product)
