@@ -1,4 +1,3 @@
-import os
 import asyncio
 from typing import Any, AsyncIterable
 
@@ -42,7 +41,7 @@ class AgentEvolution:
         )
 
     def get_processing_message(self) -> str:
-        return os.getenv('PROCESSING_MESSAGE')
+        return settings.PROCESSING_MESSAGE
 
     def _build_agent(self) -> LlmAgent:
         """Создает LLM агента с эволюционными возможностями."""

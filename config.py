@@ -33,6 +33,7 @@ class Config(BaseSettings):
         'Ты дружелюбный помощник, отвечай кратко и понятно.'
     )
     MCP_URL: str
+    PROCESSING_MESSAGE: str = '📋 Обрабатываю ваш запрос...'
 
     ALGORITHM: str
     SECRET_KEY: str
