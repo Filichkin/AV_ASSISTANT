@@ -9,8 +9,8 @@ from sqlalchemy.orm import sessionmaker
 from pgvector.sqlalchemy import Vector
 import torch
 
-from app.config import get_db_url
-from app.config import settings
+from config import get_db_url
+from config import settings
 
 
 Base = declarative_base()

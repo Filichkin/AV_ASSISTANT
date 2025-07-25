@@ -11,7 +11,7 @@ class Config(BaseSettings):
         'data', 'JSON'
         )
     CHROMA_PATH: str = os.path.join(BASE_DIR, 'chroma_db')
-    COLLECTION_NAME: str = 'assistant_data'
+    COLLECTION_NAME: str = 'product_embeddings'
     MAX_CHUNK_SIZE: int = 512
     CHUNK_OVERLAP: int = 50
     SHOP_DATA_URL: str = 'app/database/shop_data.json'
@@ -43,7 +43,6 @@ class Config(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
-            '..',
             '.env'
             )
     )

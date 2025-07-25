@@ -3,7 +3,7 @@ import os
 
 from mistralai import Mistral
 
-from app.config import settings
+from config import settings
 
 
 class SharedAgentDialogManager:
