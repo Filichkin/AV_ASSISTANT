@@ -1,6 +1,4 @@
-from datetime import datetime
-from typing import Any, Dict, List, Optional, Tuple
-import httpx
+from typing import Any, Dict, List, Optional
 
 import uvicorn
 from starlette.applications import Starlette
@@ -61,7 +59,7 @@ def connect_to_pgvector() -> PGVector:
         raise
 
 
-def search_products(
+async def search_products(
     query: str,
     metadata_filter: Optional[Dict[str, Any]] = None,
     k: int = 4,
@@ -85,7 +83,7 @@ def search_products(
         # В PGVector доступен similarity_search_with_score.
         # Параметр filter работает, если вы создавали
         # PGVector с use_jsonb=True.
-        results = store.similarity_search_with_score(
+        results = await store.similarity_search_with_score(
             query,
             k=k,
             filter=metadata_filter
@@ -109,8 +107,96 @@ def search_products(
         raise
 
 
+@mcp.tool()
+async def get_searched_products(query: str) -> str:
+    """
+    Поиск продуктов по запросу и (опционально)
+    по метаданным в PostgreSQL/pgvector.
+
+    Args:
+        query (str): Текстовый запрос для поиска.
+        metadata_filter (dict | None): Фильтр по метаданным
+        (для PGVector при use_jsonb=True — равенство по ключам).
+        k (int): Количество результатов.
+
+    Usage:
+        get_searched_products('какой у вас самый крутой пылесос?')
+        get_searched_products('хочу телефон до 30000')
+    """
+
+    try:
+        if not query:
+            raise McpError(
+                ErrorData(
+                    code=INVALID_PARAMS,
+                    message='Введите ваш поисковый запрос'
+                )
+            )
+
+        products_data = await search_products(query.strip())
+        if not products_data:
+            return 'Ничего не найдено.'
+
+        result_lines = []
+        for product in products_data:
+            description = product['text']
+            price = product['metadata']['price']
+            result_lines.append(f'Товар: {description} Цена: {price}')
+
+        return '\n'.join(result_lines)
+
+    except Exception as e:
+        if isinstance(e, McpError):
+            raise
+        raise McpError(
+            ErrorData(
+                code=INTERNAL_ERROR,
+                message=f'Ошибка при получении данных о товарах: {str(e)}'
+            )
+        ) from e
+
+
+# Настройка SSE транспорта
+sse = SseServerTransport('/messages/')
+
+
+async def handle_sse(request: Request):
+    """Обработчик SSE соединений"""
+    _server = mcp._mcp_server
+    async with sse.connect_sse(
+        request.scope,
+        request.receive,
+        request._send,
+    ) as (reader, writer):
+        await _server.run(
+            reader,
+            writer,
+            _server.create_initialization_options()
+        )
+
+
+# Создание Starlette приложения
+app = Starlette(
+    debug=True,
+    routes=[
+        Route('/sse', endpoint=handle_sse),
+        Mount('/messages/', app=sse.handle_post_message),
+    ],
+)
+
+# if __name__ == '__main__':
+#     for product in search_products(
+#         query='какой у вас самый крутой пылесос?'
+#     ):
+#         print(product)
+
+
 if __name__ == '__main__':
-    for product in search_products(
-        query='какой у вас самый крутой пылесос?'
-    ):
-        print(product)
+    print('Запуск MCP сервера поиска продуктов по запросу...')
+    print('📡 Сервер будет доступен по адресу: http://localhost:8001')
+    print('🔗 SSE endpoint: http://localhost:8001/sse')
+    print('📧 Messages endpoint: http://localhost:8001/messages/')
+    print('🛠️ Доступные инструменты:')
+    print('   - get_searched_products(query) - поиск продуктов по запросу')
+
+    uvicorn.run(app, host='0.0.0.0', port=8001)
