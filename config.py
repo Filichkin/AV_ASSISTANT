@@ -19,14 +19,20 @@ class Config(BaseSettings):
     LLM_MODEL_NAME: str = (
         'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2'
         )
+
+    LLM_MODEL: str = 'moonshotai/kimi-k2:free'
+    LLM_API_BASE: str = 'https://openrouter.ai/api/v1'
+    OPENROUTER_API_KEY: str
+
     MISTRAL_MODEL_NAME: str = 'mistral-medium-2505'
     MISTRAL_TOKEN: str
     AGENT_FILE: str = 'agent_config.json'
-    AGENT_NAME: str = 'Customer assistant'
-    AGENT_DESCRIPTION: str = 'Shared agent with individual dialogs'
+    AGENT_NAME: str = 'Авито'
+    AGENT_DESCRIPTION: str = 'Ассистент Авито'
     AGENT_PROMPT: str = (
         'Ты дружелюбный помощник, отвечай кратко и понятно.'
     )
+    MCP_URL: str
 
     ALGORITHM: str
     SECRET_KEY: str
