@@ -61,7 +61,7 @@ class AgentEvolution:
                 # model=settings.LLM_MODEL,
                 api_base=settings.LLM_API_BASE,
                 api_key=settings.OPENROUTER_API_KEY,
-                max_tokens=100
+                max_tokens=512
                 # api_key=settings.MISTRAL_TOKEN
             ),
             name=settings.AGENT_NAME,

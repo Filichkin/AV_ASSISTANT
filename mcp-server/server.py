@@ -63,7 +63,7 @@ def search_products(
     query: str,
     metadata_filter: Optional[Dict[str, Any]] = None,
     k: int = 4,
-) -> List[Dict[str, Any]]:
+) -> Dict[str, Any]:
     """
     Поиск продуктов по запросу и (опционально)
     по метаданным в PostgreSQL/pgvector.
@@ -90,6 +90,7 @@ def search_products(
             )
 
         logger.info(f'Найдено {len(results)} результатов для запроса: {query}')
+        logger.info(f'Найдено {results}')
 
         formatted_results = []
         for doc, score in results:
@@ -100,6 +101,7 @@ def search_products(
                     "similarity_score": score,
                 }
             )
+        logger.info(f'Найдено {formatted_results[0]}')
         return formatted_results[0]
 
     except Exception as e:
@@ -108,7 +110,7 @@ def search_products(
 
 
 @mcp.tool()
-async def get_searched_products(query: str) -> str:
+def get_searched_products(query: str) -> str:
     """
     Поиск продуктов по запросу и (опционально)
     по метаданным в PostgreSQL/pgvector.
@@ -123,7 +125,7 @@ async def get_searched_products(query: str) -> str:
         get_searched_products('какой у вас самый крутой пылесос?')
         get_searched_products('хочу телефон до 30000')
     """
-
+    logger.info(f'Найдено {query}')
     try:
         if not query:
             raise McpError(
@@ -133,13 +135,14 @@ async def get_searched_products(query: str) -> str:
                 )
             )
 
-        products_data = await search_products(query.strip())
+        products_data = search_products(query.strip())
         logger.info(f'Найдено {products_data}')
         if not products_data:
             return 'Ничего не найдено.'
         description = products_data['text']
         price = products_data['metadata']['price']
         result = f'Товар: {description} Цена: {price}'
+        logger.info(f'Найдено {result}')
         return result
         # result_lines = []
         # for product in products_data:
