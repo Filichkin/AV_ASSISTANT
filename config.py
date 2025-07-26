@@ -27,13 +27,15 @@ class Config(BaseSettings):
     MISTRAL_MODEL_NAME: str = 'mistral-medium-2505'
     MISTRAL_TOKEN: str
     AGENT_FILE: str = 'agent_config.json'
-    AGENT_NAME: str = 'Авито'
+    AGENT_NAME: str = 'Avito'
     AGENT_DESCRIPTION: str = 'Ассистент Авито'
     AGENT_PROMPT: str = (
         'Ты дружелюбный помощник, отвечай кратко и понятно.'
     )
     MCP_URL: str
     PROCESSING_MESSAGE: str = '📋 Обрабатываю ваш запрос...'
+    HOST: str = "0.0.0.0"
+    PORT: str = "10002"
 
     ALGORITHM: str
     SECRET_KEY: str
