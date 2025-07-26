@@ -20,7 +20,7 @@ class Config(BaseSettings):
         'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2'
         )
 
-    LLM_MODEL: str = 'moonshotai/kimi-k2:free'
+    LLM_MODEL: str = 'mistral/mistral-tiny'
     LLM_API_BASE: str = 'https://openrouter.ai/api/v1'
     OPENROUTER_API_KEY: str
 

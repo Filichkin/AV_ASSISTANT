@@ -11,8 +11,8 @@ from a2a.types import (
     AgentCard,
     AgentSkill,
 )
-from app.agent import AgentEvolution
-from app.agent_executor import EvolutionAgentExecutor
+from .agent import AgentEvolution
+from .agent_executor import EvolutionAgentExecutor
 from dotenv import load_dotenv
 
 from starlette.middleware.cors import CORSMiddleware  # Import CORSMiddleware
@@ -70,7 +70,7 @@ def main(host, port):
 
         # URL для контейнера должен использовать имя контейнера для Docker сети
         # url_agent = "http://a2a-agent:10002"
-        url_agent = "http://localhost:10002"
+        url_agent = "http://0.0.0.0:10002"
         agent_card = AgentCard(
             name=os.getenv('AGENT_NAME', 'evolution_agent'),
             description=os.getenv(

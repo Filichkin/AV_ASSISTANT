@@ -59,7 +59,7 @@ def connect_to_pgvector() -> PGVector:
         raise
 
 
-async def search_products(
+def search_products(
     query: str,
     metadata_filter: Optional[Dict[str, Any]] = None,
     k: int = 4,
@@ -83,7 +83,7 @@ async def search_products(
         # В PGVector доступен similarity_search_with_score.
         # Параметр filter работает, если вы создавали
         # PGVector с use_jsonb=True.
-        results = await store.similarity_search_with_score(
+        results = store.similarity_search_with_score(
             query,
             k=k,
             filter=metadata_filter
@@ -100,7 +100,7 @@ async def search_products(
                     "similarity_score": score,
                 }
             )
-        return formatted_results
+        return formatted_results[0]
 
     except Exception as e:
         logger.error(f'Ошибка при поиске в PGVector: {e}')
@@ -134,16 +134,20 @@ async def get_searched_products(query: str) -> str:
             )
 
         products_data = await search_products(query.strip())
+        logger.info(f'Найдено {products_data}')
         if not products_data:
             return 'Ничего не найдено.'
+        description = products_data['text']
+        price = products_data['metadata']['price']
+        result = f'Товар: {description} Цена: {price}'
+        return result
+        # result_lines = []
+        # for product in products_data:
+        #     description = product['text']
+        #     price = product['metadata']['price']
+        #     result_lines.append(f'Товар: {description} Цена: {price}')
 
-        result_lines = []
-        for product in products_data:
-            description = product['text']
-            price = product['metadata']['price']
-            result_lines.append(f'Товар: {description} Цена: {price}')
-
-        return '\n'.join(result_lines)
+        # return '\n'.join(result_lines)
 
     except Exception as e:
         if isinstance(e, McpError):

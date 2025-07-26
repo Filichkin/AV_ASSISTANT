@@ -57,9 +57,12 @@ class AgentEvolution:
 
         return LlmAgent(
             model=LiteLlm(
-                model=settings.LLM_MODEL,
+                model="openai/gpt-4",
+                # model=settings.LLM_MODEL,
                 api_base=settings.LLM_API_BASE,
-                api_key=settings.OPENROUTER_API_KEY
+                api_key=settings.OPENROUTER_API_KEY,
+                max_tokens=100
+                # api_key=settings.MISTRAL_TOKEN
             ),
             name=settings.AGENT_NAME,
             description=settings.AGENT_DESCRIPTION,
