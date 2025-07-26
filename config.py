@@ -20,9 +20,10 @@ class Config(BaseSettings):
         'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2'
         )
 
-    LLM_MODEL: str = 'mistral/mistral-tiny'
+    LLM_MODEL: str = 'openai/gpt-4'
     LLM_API_BASE: str = 'https://openrouter.ai/api/v1'
     OPENROUTER_API_KEY: str
+    MAX_TOKENS: int = 512
 
     MISTRAL_MODEL_NAME: str = 'mistral-medium-2505'
     MISTRAL_TOKEN: str
