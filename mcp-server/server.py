@@ -1,3 +1,4 @@
+import asyncio
 from typing import Any, Dict, List, Optional
 
 import uvicorn
@@ -59,11 +60,15 @@ def connect_to_pgvector() -> PGVector:
         raise
 
 
+async def async_connect_to_pgvector() -> PGVector:
+    return await asyncio.to_thread(connect_to_pgvector)
+
+
 def search_products(
     query: str,
     metadata_filter: Optional[Dict[str, Any]] = None,
     k: int = 4,
-) -> Dict[str, Any]:
+) -> List[Dict[Any, Any]]:
     """
     Поиск продуктов по запросу и (опционально)
     по метаданным в PostgreSQL/pgvector.
@@ -90,7 +95,6 @@ def search_products(
             )
 
         logger.info(f'Найдено {len(results)} результатов для запроса: {query}')
-        logger.info(f'Найдено {results}')
 
         formatted_results = []
         for doc, score in results:
@@ -101,16 +105,23 @@ def search_products(
                     "similarity_score": score,
                 }
             )
-        logger.info(f'Найдено {formatted_results[0]}')
-        return formatted_results[0]
+        return formatted_results
 
     except Exception as e:
         logger.error(f'Ошибка при поиске в PGVector: {e}')
         raise
 
 
+async def async_search_products(
+    query: str,
+    metadata_filter: Optional[Dict[str, Any]] = None,
+    k: int = 4,
+) -> List[Dict[str, Any]]:
+    return await asyncio.to_thread(search_products, query, metadata_filter, k)
+
+
 @mcp.tool()
-def get_searched_products(query: str) -> str:
+async def get_searched_products(query: str) -> str:
     """
     Поиск продуктов по запросу и (опционально)
     по метаданным в PostgreSQL/pgvector.
@@ -135,22 +146,16 @@ def get_searched_products(query: str) -> str:
                 )
             )
 
-        products_data = search_products(query.strip())
-        logger.info(f'Найдено {products_data}')
+        products_data = await async_search_products(query.strip())
         if not products_data:
             return 'Ничего не найдено.'
-        description = products_data['text']
-        price = products_data['metadata']['price']
-        result = f'Товар: {description} Цена: {price}'
-        logger.info(f'Найдено {result}')
-        return result
-        # result_lines = []
-        # for product in products_data:
-        #     description = product['text']
-        #     price = product['metadata']['price']
-        #     result_lines.append(f'Товар: {description} Цена: {price}')
+        result_lines = []
+        for product in products_data:
+            description = product['text']
+            price = product['metadata']['price']
+            result_lines.append(f'Товар: {description} Цена: {price}')
 
-        # return '\n'.join(result_lines)
+        return '\n'.join(result_lines)
 
     except Exception as e:
         if isinstance(e, McpError):
