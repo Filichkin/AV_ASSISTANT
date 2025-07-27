@@ -30,9 +30,7 @@ class Config(BaseSettings):
     AGENT_FILE: str = 'agent_config.json'
     AGENT_NAME: str = 'Avito'
     AGENT_DESCRIPTION: str = 'Ассистент Авито'
-    AGENT_PROMPT: str = (
-        'Ты дружелюбный помощник, отвечай кратко и понятно.'
-    )
+    AGENT_PROMPT: str
     MCP_URL: str
     PROCESSING_MESSAGE: str = '📋 Обрабатываю ваш запрос...'
     HOST: str = '0.0.0.0'
