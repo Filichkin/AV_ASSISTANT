@@ -35,8 +35,9 @@ class Config(BaseSettings):
     )
     MCP_URL: str
     PROCESSING_MESSAGE: str = '📋 Обрабатываю ваш запрос...'
-    HOST: str = "0.0.0.0"
-    PORT: str = "10002"
+    HOST: str = '0.0.0.0'
+    PORT: str = '10002'
+    AGENT_ENDPOINT: str = 'http://127.0.0.1:10002'
 
     ALGORITHM: str
     SECRET_KEY: str

@@ -3,8 +3,7 @@ import uuid
 import gradio as gr
 import requests
 
-
-AGENT_ENDPOINT = "http://127.0.0.1:10002"
+from config import settings
 
 
 def talk_to_agent(user_input, history):
@@ -34,7 +33,7 @@ def talk_to_agent(user_input, history):
 
     try:
         response = requests.post(
-            AGENT_ENDPOINT,
+            settings.AGENT_ENDPOINT,
             json=payload,
             headers={"Content-Type": "application/json"},
             timeout=30
@@ -52,6 +51,6 @@ def talk_to_agent(user_input, history):
 
 gr.ChatInterface(
     fn=talk_to_agent,
-    title="Чат с Эволюционным ИИ",
-    chatbot=gr.Chatbot(type="messages")  # вот это важно
+    title="Чат с А-ассистентом",
+    chatbot=gr.Chatbot(type="messages")
 ).launch()
