@@ -36,7 +36,7 @@ def talk_to_agent(user_input, history):
             settings.AGENT_ENDPOINT,
             json=payload,
             headers={"Content-Type": "application/json"},
-            timeout=30
+            timeout=60
         )
         response_data = response.json()
         artifacts = response_data.get("result", {}).get("artifacts", [])
