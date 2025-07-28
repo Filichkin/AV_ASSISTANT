@@ -57,7 +57,7 @@ class AgentEvolution:
 
         return LlmAgent(
             model=LiteLlm(
-                model=settings.LLM_MODEL,
+                model=settings.LLM_AGENT_MODEL,
                 api_base=settings.LLM_API_BASE,
                 api_key=settings.OPENROUTER_API_KEY,
                 max_tokens=settings.MAX_TOKENS
