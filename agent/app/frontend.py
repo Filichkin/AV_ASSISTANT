@@ -59,7 +59,8 @@ def talk_to_agent(user_input, history):
 
 gr.ChatInterface(
     fn=talk_to_agent,
-    title='Чат с А-ассистентом',
+    title='💬 Чат с А-ассистентом',
+    theme='soft',
     chatbot=gr.Chatbot(
         value=welcome_message,
         type='messages'
