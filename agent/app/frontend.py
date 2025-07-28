@@ -6,6 +6,14 @@ import requests
 from config import settings
 
 
+welcome_message = [
+    {
+        "role": "assistant",
+        "content": "👋 Привет! Я ваш А-ассистент. Чем могу помочь?"
+        }
+]
+
+
 def talk_to_agent(user_input, history):
     payload = {
         "jsonrpc": "2.0",
@@ -39,18 +47,21 @@ def talk_to_agent(user_input, history):
             timeout=60
         )
         response_data = response.json()
-        artifacts = response_data.get("result", {}).get("artifacts", [])
-        if artifacts and artifacts[0].get("parts"):
-            parts = artifacts[0]["parts"]
-            if parts[0].get("kind") == "text":
-                return parts[0].get("text", "[Нет текста в ответе]")
-        return "[Ответ агента не содержит текст]"
+        artifacts = response_data.get('result', {}).get('artifacts', [])
+        if artifacts and artifacts[0].get('parts'):
+            parts = artifacts[0]['parts']
+            if parts[0].get('kind') == 'text':
+                return parts[0].get('text', '[Нет текста в ответе]')
+        return '[Ответ агента не содержит текст]'
     except Exception as e:
-        return f"[Ошибка подключения к агенту: {str(e)}]"
+        return f'[Ошибка подключения к агенту: {str(e)}]'
 
 
 gr.ChatInterface(
     fn=talk_to_agent,
-    title="Чат с А-ассистентом",
-    chatbot=gr.Chatbot(type="messages")
+    title='Чат с А-ассистентом',
+    chatbot=gr.Chatbot(
+        value=welcome_message,
+        type='messages'
+        )
 ).launch()
