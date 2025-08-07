@@ -23,7 +23,7 @@ class Config(BaseSettings):
     HOST: str = '0.0.0.0'
     PORT: str = '10002'
     AGENT_ENDPOINT: str = 'http://127.0.0.1:10002'
-    MAX_TOKENS: int = 512
+    MAX_TOKENS: int = 1024
 
     DATABASE_PORT: int
     POSTGRES_PASSWORD: str

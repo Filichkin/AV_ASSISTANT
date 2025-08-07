@@ -6,12 +6,7 @@ import requests
 from config import settings
 
 
-welcome_message = [
-    {
-        "role": "assistant",
-        "content": "👋 Привет! Я ваш А-ассистент. Чем могу помочь?"
-        }
-]
+welcome_message = [(None, '🤖 Привет! Я ваш А-ассистент. Чем могу помочь?')]
 
 
 def talk_to_agent(user_input, history):
@@ -61,8 +56,5 @@ gr.ChatInterface(
     fn=talk_to_agent,
     title='💬 Чат с А-ассистентом',
     theme='soft',
-    chatbot=gr.Chatbot(
-        value=welcome_message,
-        type='messages'
-        )
+    chatbot=gr.Chatbot(value=welcome_message.copy(), type='tuples')
 ).launch()
