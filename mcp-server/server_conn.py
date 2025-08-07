@@ -18,8 +18,8 @@ from sqlalchemy import create_engine, text
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores.pgvector import PGVector
 
-from config import get_db_url
-from config import settings
+from config import get_db_url, settings
+from .utils import extract_price_range
 
 
 # Создаем экземпляр MCP сервера с идентификатором "products"
@@ -83,7 +83,7 @@ def search_products(
     k: int = 4,
 ) -> List[Dict[Any, Any]]:
     """
-    Поиск продуктов по запросу и (опционально)
+    Поиск ноутбуков по запросу и (опционально)
     по метаданным в PostgreSQL/pgvector.
 
     Args:
@@ -136,7 +136,7 @@ async def async_search_products(
 @mcp.tool()
 async def get_searched_products(query: str) -> str:
     """
-    Поиск продуктов по запросу и (опционально)
+    Поиск ноутбуков по запросу и (опционально)
     по метаданным в PostgreSQL/pgvector.
 
     Args:
@@ -162,11 +162,38 @@ async def get_searched_products(query: str) -> str:
         products_data = await async_search_products(query.strip())
         if not products_data:
             return 'Ничего не найдено.'
-        result_lines = []
+
+        min_price, max_price = extract_price_range(query)
+
+        filtered = []
         for product in products_data:
+            metadata = product['metadata']
+            try:
+                price = int(metadata.get('price', 0))
+            except ValueError:
+                continue
+
+            if (
+                (min_price is not None and price < min_price) or
+                (max_price is not None and price > max_price)
+            ):
+                continue
+
+            filtered.append(product)
+
+        if not filtered:
+            return 'Не найдено товаров в указанном ценовом диапазоне.'
+
+        # 4. Форматируем результаты
+        result_lines = []
+        for product in filtered:
             description = product['text']
             price = product['metadata']['price']
-            result_lines.append(f'Товар: {description} Цена: {price}')
+            product_link = product['metadata']['product_link']
+            result_lines.append(
+                f'Товар: {description} Цена: {price} руб. '
+                f'Ссылка на товар: {product_link}'
+                )
 
         return '\n'.join(result_lines)
 

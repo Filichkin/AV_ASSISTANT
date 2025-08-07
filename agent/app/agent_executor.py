@@ -85,7 +85,7 @@ class EvolutionAgentExecutor(AgentExecutor):
             attributes={
                 SpanAttributes.SESSION_ID: session_id,
                 SpanAttributes.INPUT_VALUE: query,
-                SpanAttributes.LLM_MODEL_NAME: settings.LLM_MODEL,
+                SpanAttributes.LLM_MODEL_NAME: settings.LLM_AGENT_MODEL,
                 'agent.name': 'evolution_agent',
                 'task.id': task_id,
                 'query.length': len(query),
