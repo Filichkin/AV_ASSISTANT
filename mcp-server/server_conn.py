@@ -80,7 +80,8 @@ async def async_connect_to_pgvector() -> PGVector:
 def search_products(
     query: str,
     metadata_filter: Optional[Dict[str, Any]] = None,
-    k: int = 4,
+    k: int = 3,
+    min_similarity: float = settings.DEFAULT_MIN_SIMILARITY,
 ) -> List[Dict[Any, Any]]:
     """
     Поиск ноутбуков по запросу и (опционально)
@@ -111,13 +112,17 @@ def search_products(
 
         formatted_results = []
         for doc, score in results:
+            similarity = 1 - score  # переводим дистанцию в похожесть
+            if similarity < min_similarity:
+                continue  # отсекаем «левое»
             formatted_results.append(
                 {
                     "text": doc.page_content,
                     "metadata": doc.metadata,
-                    "similarity_score": score,
+                    "similarity_score": similarity
                 }
             )
+            logger.info(f'Найдено {formatted_results}')
         return formatted_results
 
     except Exception as e:
@@ -128,7 +133,7 @@ def search_products(
 async def async_search_products(
     query: str,
     metadata_filter: Optional[Dict[str, Any]] = None,
-    k: int = 4,
+    k: int = 3,
 ) -> List[Dict[str, Any]]:
     return await asyncio.to_thread(search_products, query, metadata_filter, k)
 
@@ -146,8 +151,9 @@ async def get_searched_products(query: str) -> str:
         k (int): Количество результатов.
 
     Usage:
-        get_searched_products('какой у вас самый крутой пылесос?')
-        get_searched_products('хочу телефон до 30000')
+        get_searched_products('Какой у вас самый лучший ноутбук Lenovo?')
+        get_searched_products('мне нужен ноутбук Apple до 50000')
+        get_searched_products('хочу ноутбук от 30000 до 50000 рублей')
     """
     logger.info(f'Найдено {query}')
     try:

@@ -4,6 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Config(BaseSettings):
+    DEFAULT_MIN_SIMILARITY: float = 0.50
     COLLECTION_NAME: str = 'product_embeddings'
     SHOP_DATA_URL: str = 'draft/app/database/shop_data_main.json'
 
