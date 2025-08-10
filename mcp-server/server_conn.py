@@ -1,25 +1,22 @@
 import asyncio
 from typing import Any, Dict, List, Optional
 
-import uvicorn
-from starlette.applications import Starlette
-from starlette.requests import Request
-from starlette.routing import Route, Mount
-
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_postgres.vectorstores import PGVector
 from loguru import logger
 from mcp.server.fastmcp import FastMCP
 from mcp.shared.exceptions import McpError
 from mcp.types import ErrorData, INTERNAL_ERROR, INVALID_PARAMS
 from mcp.server.sse import SseServerTransport
-
-import torch
 from sqlalchemy import create_engine, text
-
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores.pgvector import PGVector
+from starlette.applications import Starlette
+from starlette.requests import Request
+from starlette.routing import Route, Mount
+import torch
+import uvicorn
 
 from config import get_db_url, settings
-from .utils import extract_price_range
+from .utils import build_price_filter, extract_price_range
 
 
 # Создаем экземпляр MCP сервера с идентификатором "products"
@@ -54,9 +51,9 @@ class PGVectorSessionManager:
 
             logger.info('Подключение к PGVector...')
             self._store = PGVector(
-                connection_string=get_db_url(),
+                connection=get_db_url(),
                 collection_name=settings.COLLECTION_NAME,
-                embedding_function=embeddings,
+                embeddings=embeddings,
                 use_jsonb=True,
             )
 
@@ -109,17 +106,17 @@ def search_products(
             )
 
         logger.info(f'Найдено {len(results)} результатов для запроса: {query}')
+        logger.info(f'Результаты поиска: {results}')
 
         formatted_results = []
         for doc, score in results:
-            similarity = 1 - score  # переводим дистанцию в похожесть
-            if similarity < min_similarity:
-                continue  # отсекаем «левое»
+            if score < min_similarity:
+                continue
             formatted_results.append(
                 {
                     "text": doc.page_content,
                     "metadata": doc.metadata,
-                    "similarity_score": similarity
+                    "score": score
                 }
             )
             logger.info(f'Найдено {formatted_results}')
@@ -155,7 +152,7 @@ async def get_searched_products(query: str) -> str:
         get_searched_products('мне нужен ноутбук Apple до 50000')
         get_searched_products('хочу ноутбук от 30000 до 50000 рублей')
     """
-    logger.info(f'Найдено {query}')
+    logger.info(f'Найдено: {query}')
     try:
         if not query:
             raise McpError(
@@ -164,43 +161,26 @@ async def get_searched_products(query: str) -> str:
                     message='Введите ваш поисковый запрос'
                 )
             )
+        min_price, max_price = extract_price_range(query)
+        metadata_filter = build_price_filter(min_price, max_price)
+        logger.info(f'Ценовой фильтр: {metadata_filter}')
 
-        products_data = await async_search_products(query.strip())
+        products_data = await async_search_products(
+            query.strip(),
+            metadata_filter=metadata_filter
+            )
         if not products_data:
             return 'Ничего не найдено.'
 
-        min_price, max_price = extract_price_range(query)
-
-        filtered = []
-        for product in products_data:
-            metadata = product['metadata']
-            try:
-                price = int(metadata.get('price', 0))
-            except ValueError:
-                continue
-
-            if (
-                (min_price is not None and price < min_price) or
-                (max_price is not None and price > max_price)
-            ):
-                continue
-
-            filtered.append(product)
-
-        if not filtered:
-            return 'Не найдено товаров в указанном ценовом диапазоне.'
-
-        # 4. Форматируем результаты
         result_lines = []
-        for product in filtered:
+        for product in products_data:
             description = product['text']
-            price = product['metadata']['price']
-            product_link = product['metadata']['product_link']
+            price = product['metadata'].get('price')
+            product_link = product['metadata'].get('product_link')
             result_lines.append(
                 f'Товар: {description} Цена: {price} руб. '
                 f'Ссылка на товар: {product_link}'
-                )
-
+            )
         return '\n'.join(result_lines)
 
     except Exception as e:

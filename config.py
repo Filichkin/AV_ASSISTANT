@@ -4,14 +4,15 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Config(BaseSettings):
-    DEFAULT_MIN_SIMILARITY: float = 0.50
+    DEFAULT_MIN_SIMILARITY: float = 0.3
     COLLECTION_NAME: str = 'product_embeddings'
     SHOP_DATA_URL: str = 'draft/app/database/shop_data_main.json'
 
     LLM_MODEL_NAME: str = (
         'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2'
         )
-    LLM_AGENT_MODEL: str = 'openai/gpt-4'
+    # LLM_AGENT_MODEL: str = 'openai/gpt-4'
+    LLM_AGENT_MODEL: str = 'openai/gpt-oss-20b:free'
     LLM_API_BASE: str = 'https://openrouter.ai/api/v1'
     OPENROUTER_API_KEY: str
 
@@ -44,7 +45,7 @@ settings = Config()
 
 
 def get_db_url():
-    return (f'postgresql+psycopg2://{settings.POSTGRES_USER}:'
+    return (f'postgresql+psycopg://{settings.POSTGRES_USER}:'
             f'{settings.POSTGRES_PASSWORD}@'
             f'{settings.POSTGRES_HOST}:{settings.DATABASE_PORT}/'
             f'{settings.POSTGRES_DB}'

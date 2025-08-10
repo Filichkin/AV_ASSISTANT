@@ -1,7 +1,7 @@
 import json
 import time
 
-from langchain_community.vectorstores.pgvector import PGVector
+from langchain_postgres.vectorstores import PGVector
 from langchain_huggingface import HuggingFaceEmbeddings
 
 from loguru import logger
@@ -46,9 +46,9 @@ def connect_to_pgvector() -> PGVector:
 
         logger.info('Подключение к PGVector...')
         store = PGVector(
-            connection_string=get_db_url(),
+            connection=get_db_url(),
             collection_name=settings.COLLECTION_NAME,
-            embedding_function=embeddings,
+            embeddings=embeddings,
             use_jsonb=True,  # metadata будет храниться в JSONB
         )
 
