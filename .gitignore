@@ -150,6 +150,7 @@ posts/static/
 data/
 chroma_db/
 utils/
+draft/
 
 commands.txt
 agent_config.json
