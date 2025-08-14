@@ -44,9 +44,12 @@ class Config(BaseSettings):
 settings = Config()
 
 
+# def get_db_url():
+#     return (f'postgresql+psycopg://{settings.POSTGRES_USER}:'
+#             f'{settings.POSTGRES_PASSWORD}@'
+#             f'{settings.POSTGRES_HOST}:{settings.DATABASE_PORT}/'
+#             f'{settings.POSTGRES_DB}'
+#             )
+
 def get_db_url():
-    return (f'postgresql+psycopg://{settings.POSTGRES_USER}:'
-            f'{settings.POSTGRES_PASSWORD}@'
-            f'{settings.POSTGRES_HOST}:{settings.DATABASE_PORT}/'
-            f'{settings.POSTGRES_DB}'
-            )
+    return ('postgresql+psycopg://appuser:apppassword@pgvector:5432/appdb')

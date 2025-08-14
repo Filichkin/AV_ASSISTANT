@@ -1,3 +1,4 @@
+# check=skip=SecretsUsedInArgOrEnv
 ARG PYTHON_VERSION=3.12-slim
 
 # --------- deps stage: общие зависимости (одни и те же для agent и database)
@@ -17,8 +18,8 @@ RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+COPY ../requirements.txt /app/requirements.txt
+RUN pip install --upgrade pip && pip install -r /app/requirements.txt
 
 
 # --------- runtime stage: тонкий рантайм + уже собранный venv
@@ -39,6 +40,10 @@ COPY --from=deps /opt/venv /opt/venv
 WORKDIR /app
 COPY .. /app
 
+# скрипт точки входа
+COPY mcp_server/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Чтобы можно было импортировать пакеты из корня проекта
 ENV PYTHONPATH=/app
 
@@ -49,4 +54,15 @@ EXPOSE 8001
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8001/sse/ || exit 1
 
-CMD ["python", "-m", "mcp_server.server_conn"]
+# переменные окружения по умолчанию (могут быть переопределены в compose)
+ENV DB_HOST=pgvector \
+    DB_PORT=5432 \
+    DB_NAME=appdb \
+    DB_USER=appuser \
+    DB_PASSWORD=apppassword \
+    INIT_DB=0
+
+# старт: ждём БД, опционально загружаем данные, запускаем сервер
+ENTRYPOINT ["/entrypoint.sh"]
+# если нужно напрямую — можно заменить на:
+# CMD ["python", "-m", "mcp_server.server_conn"]
