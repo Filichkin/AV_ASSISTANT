@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 import time
 
 from langchain_postgres.vectorstores import PGVector
@@ -16,9 +15,6 @@ from config import settings
 
 
 Base = declarative_base()
-
-BASE_DIR = Path(__file__).parent
-json_path = BASE_DIR / 'shop_data_main.json'
 
 
 class ProductEmbedding(Base):
@@ -65,7 +61,7 @@ def connect_to_pgvector() -> PGVector:
 
 
 def upload_pgvector_from_json(
-    json_path: str = json_path,
+    json_path: str = settings.SHOP_DATA_URL,
     clean_before: bool = False,
 ) -> None:
     """
