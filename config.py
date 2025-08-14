@@ -7,6 +7,7 @@ class Config(BaseSettings):
     DEFAULT_MIN_SIMILARITY: float = 0.3
     COLLECTION_NAME: str = 'product_embeddings'
     SHOP_DATA_URL: str = '/app/database/shop_data_main.json'
+    # SHOP_DATA_URL: str = 'shop_data_main.json'
 
     LLM_MODEL_NAME: str = (
         'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2'
