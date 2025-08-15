@@ -96,6 +96,7 @@ Makefile
 *.temp
 temp/
 tmp/
+draft
 
 # Node modules (if any)
 node_modules/

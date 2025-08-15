@@ -27,12 +27,18 @@ class Config(BaseSettings):
     PORT: str = '10002'
     AGENT_ENDPOINT: str = 'http://127.0.0.1:10002'
     MAX_TOKENS: int = 1024
+    APP_PORT: int = 8001
 
-    DATABASE_PORT: int
+    POSTGRES_PORT: int
     POSTGRES_PASSWORD: str
     POSTGRES_USER: str
     POSTGRES_DB: str
     POSTGRES_HOST: str
+    FORCE_LOAD: int = 0
+
+    PGADMIN_EMAIL: str
+    PGADMIN_PASSWORD: str
+    PGADMIN_PORT: int = 5050
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(
@@ -45,12 +51,12 @@ class Config(BaseSettings):
 settings = Config()
 
 
-# def get_db_url():
-#     return (f'postgresql+psycopg://{settings.POSTGRES_USER}:'
-#             f'{settings.POSTGRES_PASSWORD}@'
-#             f'{settings.POSTGRES_HOST}:{settings.DATABASE_PORT}/'
-#             f'{settings.POSTGRES_DB}'
-#             )
-
 def get_db_url():
-    return ('postgresql+psycopg://appuser:apppassword@pgvector:5432/appdb')
+    return (f'postgresql+psycopg://{settings.POSTGRES_USER}:'
+            f'{settings.POSTGRES_PASSWORD}@'
+            f'{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/'
+            f'{settings.POSTGRES_DB}'
+            )
+
+# def get_db_url():
+#     return ('postgresql+psycopg://appuser:apppassword@pgvector:5432/appdb')

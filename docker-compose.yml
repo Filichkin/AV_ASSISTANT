@@ -4,41 +4,39 @@ services:
   pgvector:
     image: pgvector/pgvector:pg16
     container_name: pgvector
+    env_file:
+      - .env
     environment:
-      POSTGRES_DB: appdb
-      POSTGRES_USER: appuser
-      POSTGRES_PASSWORD: apppassword
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p ${POSTGRES_PORT:-5432} -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
       timeout: 3s
-      retries: 10
+      retries: 20
 
   app:
     build:
       context: .
       dockerfile: mcp_server/Dockerfile
       args:
-        PYTHON_VERSION: 3.12-slim
+        PYTHON_VERSION: ${PYTHON_VERSION:-3.12-slim}
     container_name: av_mcp_server
     depends_on:
       pgvector:
         condition: service_healthy
+    env_file:
+      - .env
     environment:
-      DB_HOST: pgvector
-      DB_PORT: 5432
-      DB_NAME: appdb
-      DB_USER: appuser
-      DB_PASSWORD: apppassword
-      COLLECTION_NAME: product_embeddings
-      DB_URL: postgresql+psycopg://appuser:apppassword@pgvector:5432/appdb
-      INIT_DB: "1"   # после первоначальной загрузки поменяй на "0"
+      COLLECTION_NAME: ${COLLECTION_NAME:-product_embeddings}
+      FORCE_LOAD: ${FORCE_LOAD:-1}
     ports:
-      - "8001:8001"
+      - "${APP_PORT:-8001}:8001"
 
   pgadmin:
     image: dpage/pgadmin4:8
@@ -46,11 +44,13 @@ services:
     depends_on:
       pgvector:
         condition: service_healthy
+    env_file:
+      - .env
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@example.com
-      PGADMIN_DEFAULT_PASSWORD: admin1234
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     ports:
-      - "5050:80"         # откроется на http://localhost:5050
+      - "${PGADMIN_PORT:-5050}:80" # http://localhost:5050
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     restart: unless-stopped

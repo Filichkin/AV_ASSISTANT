@@ -18,7 +18,7 @@ RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /app
-COPY ../requirements.txt /app/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip && pip install -r /app/requirements.txt
 
 
@@ -30,8 +30,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PATH="/opt/venv/bin:$PATH"
 
 # libpq для работы psycopg на рантайме
-RUN apt-get update && apt-get install -y --no-install-recommends libpq5 && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq5 postgresql-client \
+ && rm -rf /var/lib/apt/lists/*
 
 # Переносим готовые зависимости
 COPY --from=deps /opt/venv /opt/venv
