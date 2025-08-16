@@ -17,7 +17,7 @@ MCP сервер для получения данных о ноутбуках с
 
 ```bash
 # Клонируйте репозиторий
-cd mcp-weather
+cd mcp_weather
 
 # Установите зависимости
 pip install -r requirements.txt
