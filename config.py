@@ -25,7 +25,8 @@ class Config(BaseSettings):
     PROCESSING_MESSAGE: str = '📋 Обрабатываю ваш запрос...'
     HOST: str = '0.0.0.0'
     PORT: str = '10002'
-    AGENT_ENDPOINT: str = 'http://127.0.0.1:10002'
+    # AGENT_ENDPOINT: str = 'http://127.0.0.1:10002'
+    AGENT_ENDPOINT: str = 'http://a2a-agent:10002'
     MAX_TOKENS: int = 1024
     APP_PORT: int = 8001
 
@@ -39,6 +40,8 @@ class Config(BaseSettings):
     PGADMIN_EMAIL: str
     PGADMIN_PASSWORD: str
     PGADMIN_PORT: int = 5050
+
+    FRONTEND_PORT: int = 10003
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(

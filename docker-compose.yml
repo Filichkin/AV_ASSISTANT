@@ -68,6 +68,22 @@ services:
       - MCP_URL=http://mcp_laptops:8001/sse
     restart: unless-stopped
 
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: a2a-frontend
+    depends_on:
+      - a2a-agent
+    env_file:
+    - .env
+    environment:
+      AGENT_URL: ${AGENT_URL:-http://a2a-agent:10002}
+      MCP_URL: ${MCP_URL:-http://mcp_laptops:8001/sse}
+    ports:
+    - "${FRONTEND_PORT:-10003}:10003"
+    restart: unless-stopped
+
 volumes:
   pgdata:
   pgadmin-data:

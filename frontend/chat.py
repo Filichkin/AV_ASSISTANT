@@ -60,4 +60,7 @@ gr.ChatInterface(
         height=800
         ),
     css=GRAY_CSS
-).launch()
+).launch(
+    server_name='0.0.0.0',
+    server_port=int(settings.FRONTEND_PORT)
+)
