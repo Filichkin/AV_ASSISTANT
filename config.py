@@ -25,8 +25,8 @@ class Config(BaseSettings):
     PROCESSING_MESSAGE: str = '📋 Обрабатываю ваш запрос...'
     HOST: str = '0.0.0.0'
     PORT: str = '10002'
-    # AGENT_ENDPOINT: str = 'http://127.0.0.1:10002'
-    AGENT_ENDPOINT: str = 'http://a2a-agent:10002'
+    AGENT_ENDPOINT: str = 'http://127.0.0.1:10002'
+    # AGENT_ENDPOINT: str = 'http://a2a-agent:10002' # для запуска в docker
     MAX_TOKENS: int = 1024
     APP_PORT: int = 8001
 
@@ -60,6 +60,3 @@ def get_db_url():
             f'{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/'
             f'{settings.POSTGRES_DB}'
             )
-
-# def get_db_url():
-#     return ('postgresql+psycopg://appuser:apppassword@pgvector:5432/appdb')
