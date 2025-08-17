@@ -7,7 +7,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from loguru import logger
 from pgvector.sqlalchemy import Vector
 from sqlalchemy import create_engine, Column, Integer, String, JSON, text
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 import torch
 
 from config import get_db_url

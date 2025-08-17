@@ -21,11 +21,6 @@ echo "========================"
 : "${POSTGRES_PASSWORD:=apppassword}"
 : "${COLLECTION_NAME:=product_embeddings}"
 
-# Back-compat: INIT_DB=1 трактуем как FORCE_LOAD=1, если FORCE_LOAD не задан
-if [[ "${INIT_DB:-0}" == "1" && -z "${FORCE_LOAD:-}" ]]; then
-  export FORCE_LOAD="1"
-fi
-: "${FORCE_LOAD:=0}"
 
 # Построим цельный URL, если не передан
 : "${DATABASE_URL:=}"
@@ -69,38 +64,41 @@ PGPASSWORD="${POSTGRES_PASSWORD}" psql "host=${POSTGRES_HOST} port=${POSTGRES_PO
   -v ON_ERROR_STOP=1 -c "CREATE EXTENSION IF NOT EXISTS vector;"
 
 # ---- Решаем, нужна ли загрузка данных ----
-NEED_LOAD=1
-if [[ "${FORCE_LOAD}" != "1" ]]; then
+if [[ "${FORCE_LOAD:-0}" == "1" ]]; then
+  echo "FORCE_LOAD=1 — всегда загружаем данные."
+  cd /app/database
+  ls -la .
+  python -X dev -u create_db.py
+  echo "Data load finished."
+else
   TABLE_EXISTS=$(
-    PGPASSWORD="${POSTGRES_PASSWORD}" psql "host=${POSTGRES_HOST} port=${POSTGRES_PORT} dbname=${POSTGRES_DB} user=${POSTGRES_USER}" -tA -c \
-      "SELECT 1 FROM information_schema.tables
-       WHERE table_schema='public' AND table_name='langchain_pg_collection';"
+    PGPASSWORD="${POSTGRES_PASSWORD}" psql \
+      "host=${POSTGRES_HOST} port=${POSTGRES_PORT} dbname=${POSTGRES_DB} user=${POSTGRES_USER}" \
+      -tA -c "SELECT 1 FROM information_schema.tables
+              WHERE table_schema='public' AND table_name='langchain_pg_collection';"
   )
   if [[ "${TABLE_EXISTS}" == "1" ]]; then
     HAS_COLLECTION=$(
-      PGPASSWORD="${POSTGRES_PASSWORD}" psql "host=${POSTGRES_HOST} port=${POSTGRES_PORT} dbname=${POSTGRES_DB} user=${POSTGRES_USER}" -tA -c \
-        "SELECT 1 FROM langchain_pg_collection
-         WHERE name='${COLLECTION_NAME}' LIMIT 1;"
+      PGPASSWORD="${POSTGRES_PASSWORD}" psql \
+        "host=${POSTGRES_HOST} port=${POSTGRES_PORT} dbname=${POSTGRES_DB} user=${POSTGRES_USER}" \
+        -tA -c "SELECT 1 FROM langchain_pg_collection
+                WHERE name='${COLLECTION_NAME}' LIMIT 1;"
     )
     if [[ "${HAS_COLLECTION}" == "1" ]]; then
-      echo "Collection '${COLLECTION_NAME}' already exists — skip loading."
-      NEED_LOAD=0
+      echo "Collection '${COLLECTION_NAME}' уже существует — загрузка не требуется."
+    else
+      echo "Коллекции '${COLLECTION_NAME}' нет — загружаем данные."
+      cd /app/database
+      ls -la .
+      python -X dev -u create_db.py
+      echo "Data load finished."
     fi
-  fi
-else
-  echo "FORCE_LOAD=1 — will load data regardless of collection check."
-fi
-
-# ---- Однократная загрузка данных ----
-if [[ "${NEED_LOAD}" == "1" ]]; then
-  echo "Loading data via /app/database/create_db.py (cwd=/app/database) ..."
-  if [[ -f "/app/database/create_db.py" ]]; then
+  else
+    echo "Таблицы langchain_pg_collection нет — загружаем данные."
     cd /app/database
     ls -la .
     python -X dev -u create_db.py
     echo "Data load finished."
-  else
-    echo "WARNING: /app/database/create_db.py not found — skipping data load."
   fi
 fi
 

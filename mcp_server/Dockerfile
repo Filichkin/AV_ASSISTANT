@@ -18,7 +18,7 @@ RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /app
-COPY ./requirements.txt /app/requirements.txt
+COPY mcp_server/requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip && pip install -r /app/requirements.txt
 
 
@@ -39,7 +39,9 @@ COPY --from=deps /opt/venv /opt/venv
 
 # Код приложения
 WORKDIR /app
-COPY .. /app
+COPY mcp_server /app/mcp_server
+COPY database   /app/database
+COPY config.py /app/config.py
 
 # скрипт точки входа
 COPY mcp_server/entrypoint.sh /entrypoint.sh
@@ -60,8 +62,7 @@ ENV DB_HOST=pgvector \
     DB_PORT=5432 \
     DB_NAME=appdb \
     DB_USER=appuser \
-    DB_PASSWORD=apppassword \
-    INIT_DB=0
+    DB_PASSWORD=apppassword 
 
 # старт: ждём БД, опционально загружаем данные, запускаем сервер
 ENTRYPOINT ["/entrypoint.sh"]
