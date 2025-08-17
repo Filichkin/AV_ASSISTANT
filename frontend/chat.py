@@ -4,9 +4,7 @@ import gradio as gr
 import requests
 
 from config import settings
-
-
-welcome_message = [(None, '🤖 Привет! Я ваш А-ассистент. Чем могу помочь?')]
+from .constants import GRAY_CSS, WELCOME_MESSAGE
 
 
 def talk_to_agent(user_input, history):
@@ -56,5 +54,10 @@ gr.ChatInterface(
     fn=talk_to_agent,
     title='💬 Чат с А-ассистентом',
     theme='soft',
-    chatbot=gr.Chatbot(value=welcome_message.copy(), type='tuples')
+    chatbot=gr.Chatbot(
+        value=WELCOME_MESSAGE.copy(),
+        type='tuples',
+        height=800
+        ),
+    css=GRAY_CSS
 ).launch()
