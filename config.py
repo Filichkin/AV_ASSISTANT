@@ -8,6 +8,7 @@ class Config(BaseSettings):
     COLLECTION_NAME: str = 'product_embeddings'
     # для запуска в docker
     SHOP_DATA_URL: str = '/app/database/shop_data_main.json'
+    # для локального запуска
     # SHOP_DATA_URL: str = 'shop_data_main.json'
 
     LLM_MODEL_NAME: str = (
