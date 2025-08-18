@@ -21,8 +21,8 @@ class Config(BaseSettings):
 
     AGENT_VERSION: str = '1.0.0'
     AGENT_FILE: str = 'agent_config.json'
-    AGENT_NAME: str = 'Avito'
-    AGENT_DESCRIPTION: str = 'Ассистент Авито'
+    AGENT_NAME: str = 'MarketBot Agent'
+    AGENT_DESCRIPTION: str = 'MarketBot Agent'
     AGENT_PROMPT: str
 
     MCP_URL: str
