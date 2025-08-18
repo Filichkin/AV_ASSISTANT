@@ -6,6 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Config(BaseSettings):
     DEFAULT_MIN_SIMILARITY: float = 0.3
     COLLECTION_NAME: str = 'product_embeddings'
+    # для запуска в docker
     SHOP_DATA_URL: str = '/app/database/shop_data_main.json'
     # SHOP_DATA_URL: str = 'shop_data_main.json'
 
@@ -20,9 +21,9 @@ class Config(BaseSettings):
     AGENT_VERSION: str = '1.0.0'
     AGENT_FILE: str = 'agent_config.json'
     AGENT_NAME: str = 'Avito'
-
     AGENT_DESCRIPTION: str = 'Ассистент Авито'
     AGENT_PROMPT: str
+
     MCP_URL: str
     PROCESSING_MESSAGE: str = '📋 Обрабатываю ваш запрос...'
     HOST: str = '0.0.0.0'

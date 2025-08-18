@@ -85,6 +85,15 @@ python -m database.create_db
 # Агент будет доступен на http://localhost:10002
 ```
 
+### Запуск Gradio веб-интерфейса (без Docker)
+
+```bash
+# Запуск основных сервисов
+python -m python -m frontend.chat
+
+# Gradio будет доступен на http://0.0.0.0:10003
+```
+
 
 ### Отправка сообщения (без потоковой передачи), опционально через Postman
 ```json
@@ -119,27 +128,58 @@ python -m database.create_db
 В файле `.env` можно настроить следующие параметры:
 
 ```bash
-# Основные настройки агента
-AGENT_NAME=jira_mcp_agent
-AGENT_DESCRIPTION="Jira MCP агент для управления проектами, задачами, спринтами и agile-процессами"
-AGENT_VERSION=1.0.0
+# Основные настройки POSTGRES
+POSTGRES_PORT=5432
+POSTGRES_PASSWORD=12345
+POSTGRES_USER=postgres
+POSTGRES_DB=av_assistant
+POSTGRES_HOST=localhost
+POSTGRES_HOST=pgvector # для запуска в docker
 
-# Конфигурация модели
-LLM_MODEL="evolution_inference/model-for-agent-space-test"
-LLM_API_BASE="https://your-model-api-base-url/v1"
+# Основные настройки при создании базы-данных
+LLM_MODEL_NAME=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+COLLECTION_NAME=product_embeddings
+FORCE_LOAD=0 # 1 - если необходимо создание БД при первой сборке в Docker
+
+# Основные настройки PGADMIN
+PGADMIN_EMAIL=admin@example.com
+PGADMIN_PASSWORD=admin1234
+PGADMIN_PORT=5050
+
+# Основные настройки агента
+AGENT_NAME=Avito
+AGENT_VERSION=1.0.0
+AGENT_PROMPT=Вы - профессиональный агент по получению информации о ноутбуках из базы данных
+
+# Конфигурация модели агента
+OPENROUTER_API_KEY=sk-or-v1
+LLM_AGENT_MODEL=openai/gpt-oss-20b:free
+LLM_API_BASE=https://openrouter.ai/api/v1
 
 # MCP Configuration
-MCP_URL=http://mcp-weather:8001/sse
+MCP_URL=http://0.0.0.0:8001/sse 
+APP_PORT=8001
 
 # Phoenix мониторинг (опционально)
-PHOENIX_PROJECT_NAME="ip_agent_adk"
-PHOENIX_ENDPOINT="http://phoenix:6006/v1/traces"
+PHOENIX_ENDPOINT=http://localhost:6006/v1/traces
+ENABLE_PHOENIX=True
 
 # Серверные настройки
-HOST="0.0.0.0"
-PORT="10002"
-
-# Мониторинг
-ENABLE_PHOENIX="false"
-ENABLE_MONITORING="true"
+FRONTEND_PORT=10003
 ```
+
+## 📋 Требования
+
+- **Docker**: Для контейнеризации
+- **MCP Server**: Для инструментов (опционально)
+
+## 📄 Лицензия
+
+Этот проект распространяется под лицензией MIT. См. файл `LICENSE` для подробностей (если имеется).
+
+## 🔗 Полезные ссылки
+
+- [Google ADK Documentation](https://developers.google.com/adk)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [LiteLLM Documentation](https://docs.litellm.ai/)
+- [Phoenix Tracing](https://phoenix.arize.com/)
