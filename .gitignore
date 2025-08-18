@@ -155,5 +155,6 @@ draft/
 commands.txt
 agent_config.json
 script.docx
-
+ragas.json
+shop_data_main.json
 
