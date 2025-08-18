@@ -17,8 +17,10 @@ class Config(BaseSettings):
     LLM_API_BASE: str = 'https://openrouter.ai/api/v1'
     OPENROUTER_API_KEY: str
 
+    AGENT_VERSION: str = '1.0.0'
     AGENT_FILE: str = 'agent_config.json'
     AGENT_NAME: str = 'Avito'
+
     AGENT_DESCRIPTION: str = 'Ассистент Авито'
     AGENT_PROMPT: str
     MCP_URL: str
@@ -42,6 +44,8 @@ class Config(BaseSettings):
     PGADMIN_PORT: int = 5050
 
     FRONTEND_PORT: int = 10003
+    ENABLE_PHOENIX: bool
+    PHOENIX_ENDPOINT: str
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(
