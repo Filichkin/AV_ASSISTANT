@@ -49,11 +49,24 @@ class Config(BaseSettings):
     ENABLE_PHOENIX: bool
     PHOENIX_ENDPOINT: str
 
+    KEY_ID: str
+    KEY_SECRET: str
+    AUTH_URL: str
+    RETRIEVE_URL_TEMPLATE: str
+    KNOWLEDGE_BASE_ID: str
+    KNOWLEDGE_BASE_VERSION_ID: str
+    RETRIEVE_LIMIT: int
+    EVOLUTION_PROJECT_ID: str
+
+    MCP_SERVER_URL: str
+    MCP_TRANSPORT: str
+
     model_config = SettingsConfigDict(
         env_file=os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
             '.env'
-            )
+            ),
+        extra='ignore'
     )
 
 
