@@ -159,3 +159,6 @@ ragas.json
 shop_data_main.json
 server.py
 
+new_database.xlsx
+*.json
+
