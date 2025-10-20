@@ -29,6 +29,7 @@ def convert_excel_to_json(excel_file: str, output_file: str) -> None:
             # Создаем словарь с нужными полями, маппим русские названия колонок
             item = {
                 'id': str(index + 1),  # ID начинается с 1
+                'name': str(row.get('Название', '')),
                 'segment': str(row.get('сегмент', '')),
                 'condition': str(row.get('состояние', '')),
                 'processor': str(row.get('процессор', '')),
@@ -36,7 +37,10 @@ def convert_excel_to_json(excel_file: str, output_file: str) -> None:
                 'ssd': str(row.get('SSD', '')),
                 'video': str(row.get('видеокарта', '')),
                 'diogonal': str(row.get('диагональ', '')),
-                'text': str(row.iloc[9] if len(row) > 9 else ''),
+                'text': str(
+                    row.get('Текст', row.iloc[9] if len(row) > 9 else '')
+                ),
+                'price': str(row.get('цена', '')),
                 'url': str(row.get('ссылка на авито', ''))
             }
 
