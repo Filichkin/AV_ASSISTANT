@@ -60,6 +60,14 @@ class Config(BaseSettings):
 
     MCP_SERVER_URL: str
     MCP_TRANSPORT: str
+    MCP_RAG_TOOL_NAME: str = 'request_to_rag'
+
+    GIGACHAT_CREDENTIALS: str
+    GIGACHAT_SCOPE: str
+    GIGACHAT_MODEL: str
+    GIGACHAT_TEMPERATURE: float
+    GIGACHAT_VERIFY_SSL: bool
+    MAX_TOKENS: int
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(
