@@ -69,6 +69,18 @@ class Config(BaseSettings):
     GIGACHAT_VERIFY_SSL: bool
     MAX_TOKENS: int
 
+    # Avito Configuration
+    AVITO_CLIENT_ID: str = ''
+    AVITO_CLIENT_SECRET: str = ''
+    AVITO_USER_ID: int = 0
+    AVITO_POLL_INTERVAL: int = 30
+
+    # Redis Configuration
+    REDIS_URL: str = 'redis://redis:6379/0'
+
+    # Monitor API Configuration
+    MONITOR_API_PORT: int = 8080
+
     model_config = SettingsConfigDict(
         env_file=os.path.join(
             os.path.dirname(os.path.abspath(__file__)),

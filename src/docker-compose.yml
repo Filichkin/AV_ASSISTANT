@@ -1,0 +1,117 @@
+version: '3.8'
+
+services:
+  # Redis - хранит очередь сообщений и состояние диалогов
+  redis:
+    image: redis:7-alpine
+    container_name: avito-redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - avito-network
+
+  # MCP Server - существующий RAG сервер
+  mcp-server:
+    build:
+      context: ..
+      dockerfile: src/Dockerfile.mcp
+    container_name: avito-mcp-server
+    ports:
+      - '8003:8003'
+    environment:
+      - KEY_ID=${KEY_ID}
+      - KEY_SECRET=${KEY_SECRET}
+      - AUTH_URL=${AUTH_URL}
+      - RETRIEVE_URL_TEMPLATE=${RETRIEVE_URL_TEMPLATE}
+      - KNOWLEDGE_BASE_ID=${KNOWLEDGE_BASE_ID}
+      - KNOWLEDGE_BASE_VERSION_ID=${KNOWLEDGE_BASE_VERSION_ID}
+      - RETRIEVE_LIMIT=${RETRIEVE_LIMIT:-6}
+      - EVOLUTION_PROJECT_ID=${EVOLUTION_PROJECT_ID}
+    volumes:
+      - ../cloud_mcp:/app/cloud_mcp
+      - ../config.py:/app/config.py
+      - ../.env:/app/.env
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8003/']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - avito-network
+
+  # Avito Worker - фоновый процесс для обработки сообщений
+  avito-worker:
+    build:
+      context: ..
+      dockerfile: src/Dockerfile.worker
+    container_name: avito-worker
+    depends_on:
+      redis:
+        condition: service_healthy
+      mcp-server:
+        condition: service_healthy
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - AVITO_CLIENT_ID=${AVITO_CLIENT_ID}
+      - AVITO_CLIENT_SECRET=${AVITO_CLIENT_SECRET}
+      - AVITO_USER_ID=${AVITO_USER_ID}
+      - AVITO_POLL_INTERVAL=${AVITO_POLL_INTERVAL:-30}
+      - MCP_SERVER_URL=http://mcp-server:8003/sse
+      - MCP_TRANSPORT=${MCP_TRANSPORT:-sse}
+      - MCP_RAG_TOOL_NAME=${MCP_RAG_TOOL_NAME:-request_to_rag}
+      - GIGACHAT_CREDENTIALS=${GIGACHAT_CREDENTIALS}
+      - GIGACHAT_SCOPE=${GIGACHAT_SCOPE}
+      - GIGACHAT_MODEL=${GIGACHAT_MODEL}
+      - GIGACHAT_TEMPERATURE=${GIGACHAT_TEMPERATURE:-0.7}
+      - GIGACHAT_VERIFY_SSL=${GIGACHAT_VERIFY_SSL:-True}
+    volumes:
+      - ../agent:/app/agent
+      - ../config.py:/app/config.py
+      - ../.env:/app/.env
+    restart: unless-stopped
+    networks:
+      - avito-network
+
+  # Monitor API - FastAPI для просмотра статистики
+  monitor-api:
+    build:
+      context: ..
+      dockerfile: src/Dockerfile.monitor
+    container_name: avito-monitor-api
+    depends_on:
+      redis:
+        condition: service_healthy
+    ports:
+      - '8080:8080'
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - MONITOR_API_PORT=8080
+    volumes:
+      - ../config.py:/app/config.py
+      - ../.env:/app/.env
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - avito-network
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  avito-network:
+    driver: bridge
