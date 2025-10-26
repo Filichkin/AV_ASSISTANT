@@ -1,0 +1,26 @@
+# Dockerfile для MCP Server
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Установка системных зависимостей
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Копируем requirements
+COPY cloud_mcp/requirements.txt cloud_mcp_requirements.txt
+
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir -r cloud_mcp_requirements.txt
+
+# Копируем код
+COPY cloud_mcp /app/cloud_mcp
+COPY config.py /app/config.py
+COPY .env /app/.env
+
+# Экспонируем порт
+EXPOSE 8003
+
+# Запускаем MCP сервер
+CMD ["python", "-m", "cloud_mcp"]

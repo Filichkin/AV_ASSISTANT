@@ -1,0 +1,27 @@
+# Dockerfile для Avito Worker
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Установка системных зависимостей
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Копируем requirements для всех компонентов
+COPY src/requirements.txt src_requirements.txt
+COPY agent/requirements.txt agent_requirements.txt
+
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir -r src_requirements.txt && \
+    pip install --no-cache-dir -r agent_requirements.txt
+
+# Копируем код
+COPY src /app/src
+COPY agent /app/agent
+COPY config.py /app/config.py
+COPY .env /app/.env
+
+# Запускаем worker
+CMD ["python", "-m", "src.avito_worker.worker"]

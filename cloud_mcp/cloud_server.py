@@ -97,7 +97,7 @@ async def request_to_rag(query: str) -> str:
     """
     retrieve_limit = _parse_retrieve_limit(
         settings.RETRIEVE_LIMIT,
-        default=6
+        default=3
         )
     global _access_token
 

@@ -31,7 +31,6 @@ class Config(BaseSettings):
     PORT: str = '10002'
     AGENT_ENDPOINT: str = 'http://127.0.0.1:10002'
     # AGENT_ENDPOINT: str = 'http://a2a-agent:10002' # для запуска в docker
-    MAX_TOKENS: int = 1024
     APP_PORT: int = 8001
 
     POSTGRES_PORT: int
@@ -68,6 +67,20 @@ class Config(BaseSettings):
     GIGACHAT_TEMPERATURE: float
     GIGACHAT_VERIFY_SSL: bool
     MAX_TOKENS: int
+
+    # Avito Configuration
+    AVITO_CLIENT_ID: str = ''
+    AVITO_CLIENT_SECRET: str = ''
+    AVITO_USER_ID: int = 0
+    AVITO_POLL_INTERVAL: int = 30
+    # Получать все чаты, а не только непрочитанные
+    AVITO_GET_ALL_CHATS: bool = False
+
+    # Redis Configuration
+    REDIS_URL: str = 'redis://redis:6379/0'
+
+    # Monitor API Configuration
+    MONITOR_API_PORT: int = 8080
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(
