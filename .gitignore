@@ -164,3 +164,7 @@ new_database.xlsx
 
 get_user_id.py
 
+# Test directories
+test_avito/
+dump.rdb
+
