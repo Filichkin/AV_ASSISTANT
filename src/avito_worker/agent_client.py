@@ -18,7 +18,8 @@ class AgentClient:
         gigachat_temperature: float,
         gigachat_scope: str,
         gigachat_credentials: str,
-        gigachat_verify_ssl: bool = True
+        gigachat_verify_ssl: bool = True,
+        max_tokens: int = 1000
     ):
         """Инициализация клиента агента.
 
@@ -31,6 +32,7 @@ class AgentClient:
             gigachat_scope: Scope для GigaChat
             gigachat_credentials: Credentials для GigaChat
             gigachat_verify_ssl: Проверять SSL сертификаты
+            max_tokens: Максимальное количество токенов в ответе
         """
         self.mcp_server_url = mcp_server_url
         self.mcp_transport = mcp_transport
@@ -40,6 +42,7 @@ class AgentClient:
         self.gigachat_scope = gigachat_scope
         self.gigachat_credentials = gigachat_credentials
         self.gigachat_verify_ssl = gigachat_verify_ssl
+        self.max_tokens = max_tokens
         self._mcp_client = None
         self._agent = None
         self._astream_answer = None
@@ -61,6 +64,7 @@ class AgentClient:
             scope=self.gigachat_scope,
             credentials=self.gigachat_credentials,
             verify_ssl=self.gigachat_verify_ssl,
+            max_tokens=self.max_tokens,
         )
         logger.info('Агент успешно инициализирован')
         return self

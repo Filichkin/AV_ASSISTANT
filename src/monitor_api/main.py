@@ -7,11 +7,25 @@ from typing import Any, Dict
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from loguru import logger
+import logging
 
 from config import settings
 from src.common.models import WorkerStats
 from src.common.redis_client import RedisClient
 from src.monitor_api.dashboard import get_dashboard_html
+
+
+# Отключаем логи uvicorn для health check endpoint
+class EndpointFilter(logging.Filter):
+    """Фильтр для отключения логов health check endpoint."""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        """Фильтрует логи запросов к /health."""
+        return record.getMessage().find('GET /health') == -1
+
+
+# Применяем фильтр к uvicorn access logger
+logging.getLogger('uvicorn.access').addFilter(EndpointFilter())
 
 
 # Глобальный клиент Redis
@@ -98,21 +112,20 @@ async def get_stats() -> WorkerStats:
 async def get_queue_info() -> Dict[str, Any]:
     """Получить информацию об очереди сообщений.
 
-    Returns:
-        Информация об очереди
-    """
-    try:
-        queue_length = await redis_client.get_queue_length()
-        processing_count = await redis_client.get_processing_count()
+    Note:
+        Очередь сообщений больше не используется.
+        Сообщения обрабатываются напрямую в worker._process_message_direct
+        Этот endpoint оставлен для совместимости и возвращает нули.
 
-        return {
-            'queue_length': queue_length,
-            'processing_count': processing_count,
-            'total': queue_length + processing_count
-        }
-    except Exception as e:
-        logger.error(f'Ошибка при получении информации об очереди: {e}')
-        raise HTTPException(status_code=500, detail=str(e))
+    Returns:
+        Информация об очереди (deprecated, всегда нули)
+    """
+    return {
+        'queue_length': 0,
+        'processing_count': 0,
+        'total': 0,
+        'note': 'Queue processing deprecated. Messages are processed directly.'
+    }
 
 
 @app.get('/dialogs')

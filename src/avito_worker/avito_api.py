@@ -203,7 +203,15 @@ class AvitoAPIClient:
                 timeout=20.0
             )
 
+            # V3 API возвращает массив сообщений напрямую, а не объект
             messages = response.json()
+            if not isinstance(messages, list):
+                # Если это не массив, пытаемся извлечь messages
+                if isinstance(messages, dict):
+                    messages = messages.get('messages', [])
+                else:
+                    messages = []
+
             logger.info(
                 f'Получено {len(messages)} сообщений из чата {chat_id}'
             )
@@ -247,6 +255,17 @@ class AvitoAPIClient:
             RuntimeError: При ошибке отправки
         """
         try:
+            # Ограничиваем длину сообщения
+            # (Avito API имеет лимит ~4096 символов)
+            MAX_MESSAGE_LENGTH = 1000
+            if len(text) > MAX_MESSAGE_LENGTH:
+                truncated = text[:MAX_MESSAGE_LENGTH]
+                suffix = '...\n\n[Сообщение обрезано из-за ограничения]'
+                text = truncated + suffix
+                logger.warning(
+                    f'Сообщение обрезано до {MAX_MESSAGE_LENGTH} символов'
+                )
+
             payload = {
                 'message': {
                     'text': text

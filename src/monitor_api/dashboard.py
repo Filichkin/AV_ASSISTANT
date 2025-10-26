@@ -121,14 +121,6 @@ def get_dashboard_html() -> str:
                     <h3>Всего сообщений</h3>
                     <div class="value" id="total-messages">-</div>
                 </div>
-                <div class="card warning">
-                    <h3>В очереди</h3>
-                    <div class="value" id="pending-messages">-</div>
-                </div>
-                <div class="card info">
-                    <h3>В обработке</h3>
-                    <div class="value" id="processing-messages">-</div>
-                </div>
                 <div class="card success">
                     <h3>Обработано</h3>
                     <div class="value" id="completed-messages">-</div>
@@ -156,10 +148,6 @@ def get_dashboard_html() -> str:
 
                     document.getElementById('total-messages').textContent =
                         data.total_messages || 0;
-                    document.getElementById('pending-messages').textContent =
-                        data.pending_messages || 0;
-                    document.getElementById('processing-messages').textContent =
-                        data.processing_messages || 0;
                     document.getElementById('completed-messages').textContent =
                         data.completed_messages || 0;
                     document.getElementById('failed-messages').textContent =
@@ -189,8 +177,8 @@ def get_dashboard_html() -> str:
                 }
             }
 
-            // Автоматическое обновление каждые 5 секунд
-            setInterval(loadStats, 5000);
+            // Автоматическое обновление каждые 30 секунд
+            setInterval(loadStats, 30000);
 
             // Загружаем при открытии страницы
             loadStats();

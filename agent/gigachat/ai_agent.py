@@ -33,6 +33,7 @@ def build_agent(
     scope: str,
     credentials: str | None,
     verify_ssl: bool = True,
+    max_tokens: int = 1000,
 ):
     """Create a LangGraph ReAct agent that can call the MCP RAG tool via URL.
 
@@ -78,7 +79,8 @@ def build_agent(
         model=model_name,
         scope=scope,
         credentials=credentials,
-        verify_ssl_certs=False,
+        verify_ssl_certs=verify_ssl,
+        max_tokens=max_tokens,
     )
 
     # Load system prompt from external file for easy editing

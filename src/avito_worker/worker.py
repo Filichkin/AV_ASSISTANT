@@ -10,7 +10,7 @@ from loguru import logger
 
 from config import settings
 from src.common.redis_client import RedisClient
-from src.common.models import AvitoMessage, DialogState
+from src.common.models import DialogState
 from src.avito_worker.avito_api import AvitoAPIClient
 from src.avito_worker.agent_client import AgentClient
 
@@ -52,14 +52,12 @@ class AvitoWorker:
             gigachat_scope=settings.GIGACHAT_SCOPE,
             gigachat_credentials=settings.GIGACHAT_CREDENTIALS,
             gigachat_verify_ssl=settings.GIGACHAT_VERIFY_SSL,
+            max_tokens=settings.MAX_TOKENS,
         )
         await self._agent_client.__aenter__()
 
-        # Запускаем два процесса параллельно
-        await asyncio.gather(
-            self._poll_avito_loop(),
-            self._process_messages_loop(),
-        )
+        # Запускаем только цикл опроса (обработка сообщений происходит сразу)
+        await self._poll_avito_loop()
 
     async def stop(self):
         """Остановить worker."""
@@ -88,37 +86,65 @@ class AvitoWorker:
                     if not chat_id:
                         continue
 
-                    # Получаем последние сообщения из чата
+                    # Получаем только последние сообщения из чата
                     messages = await self.avito.get_chat_messages(
                         chat_id=chat_id,
-                        limit=50  # Получаем до 50 последних сообщений
+                        limit=5  # Получаем только последние 5 сообщений
                     )
 
                     # Фильтруем только входящие непрочитанные сообщения
+                    unread_incoming_messages = []
                     for msg_data in messages:
-                        # Пропускаем исходящие и уже прочитанные
-                        if msg_data.get('direction') != 'in':
+                        # Проверяем направление (V3 API: 'in' или 'out')
+                        direction = msg_data.get('direction')
+                        if direction != 'in':
                             continue
-                        if msg_data.get('is_read', False):
+
+                        # Проверяем статус прочтения (V3 API: is_read)
+                        is_read = msg_data.get('is_read', False)
+                        if is_read:
                             continue
 
                         # Извлекаем текст из content
                         content = msg_data.get('content', {})
-                        text = content.get('text', '')
+                        if not isinstance(content, dict):
+                            continue
 
+                        text = content.get('text', '')
                         if not text:
                             # Пропускаем сообщения без текста
                             continue
 
-                        # Создаём сообщение для очереди
-                        message = AvitoMessage(
-                            message_id=msg_data['id'],
-                            chat_id=chat_id,
-                            user_id=str(msg_data.get('author_id', '')),
-                            text=text,
+                        unread_incoming_messages.append(msg_data)
+
+                    # Обрабатываем только последнее непрочитанное сообщение
+                    if unread_incoming_messages:
+                        # API возвращает сообщения от СТАРЫХ к НОВЫМ
+                        # Сортируем по возрастанию времени для гарантии
+                        unread_incoming_messages.sort(
+                            key=lambda x: x.get('created', 0)
                         )
-                        await self.redis.enqueue_message(message)
+
+                        # Берем последнее (самое новое) непрочитанное сообщение
+                        last_message = unread_incoming_messages[-1]
+
+                        # Сразу помечаем чат как прочитанный
+                        await self.avito.mark_chat_as_read(chat_id)
+
+                        # Обрабатываем сообщение сразу
+                        await self._process_message_direct(
+                            message_id=last_message['id'],
+                            chat_id=chat_id,
+                            user_id=str(last_message.get('author_id', '')),
+                            text=last_message['content']['text']
+                        )
                         total_messages += 1
+
+                        logger.info(
+                            f'Обработано последнее непрочитанное сообщение '
+                            f'из {len(unread_incoming_messages)} доступных '
+                            f'в чате {chat_id}'
+                        )
 
                 # Обновляем статистику
                 await self._update_stats(
@@ -127,110 +153,115 @@ class AvitoWorker:
 
                 if total_messages > 0:
                     logger.info(
-                        f'Добавлено {total_messages} '
-                        f'сообщений в очередь из {len(unread_chats)} чатов'
+                        f'Обработано {total_messages} '
+                        f'сообщений из {len(unread_chats)} чатов'
                     )
 
+            except asyncio.CancelledError:
+                logger.info('Цикл опроса остановлен')
+                break
             except Exception as e:
                 logger.error(f'Ошибка при опросе Avito API: {e}')
                 await self._update_stats(last_error=str(e))
 
             # Ждем перед следующим опросом
-            await asyncio.sleep(self.poll_interval)
-
-    async def _process_messages_loop(self):
-        """Цикл обработки сообщений из очереди."""
-        logger.info('Запущен цикл обработки сообщений')
-
-        while self._running:
             try:
-                # Извлекаем сообщение из очереди
-                message = await self.redis.dequeue_message()
-                if not message:
-                    # Очередь пуста, ждем немного
-                    await asyncio.sleep(1)
-                    continue
+                await asyncio.sleep(self.poll_interval)
+            except asyncio.CancelledError:
+                logger.info('Sleep прерван, завершаем цикл опроса')
+                break
 
-                # Обрабатываем сообщение
-                await self._process_message(message)
-
-            except Exception as e:
-                logger.error(f'Ошибка в цикле обработки: {e}')
-                await asyncio.sleep(1)
-
-    async def _process_message(self, message: AvitoMessage):
-        """Обработать одно сообщение.
+    async def _process_message_direct(
+        self,
+        message_id: str,
+        chat_id: str,
+        user_id: str,
+        text: str
+    ):
+        """Обработать сообщение напрямую без очереди.
 
         Args:
-            message: Сообщение для обработки
+            message_id: ID сообщения
+            chat_id: ID чата
+            user_id: ID пользователя
+            text: Текст сообщения
         """
         try:
             logger.info(
-                f'Обработка сообщения {message.message_id} '
-                f'из чата {message.chat_id}'
+                f'Обработка сообщения {message_id} '
+                f'из чата {chat_id}'
             )
 
             # Обновляем состояние диалога
-            dialog_state = await self.redis.get_dialog_state(
-                message.chat_id
-            )
+            dialog_state = await self.redis.get_dialog_state(chat_id)
             if not dialog_state:
                 dialog_state = DialogState(
-                    chat_id=message.chat_id,
-                    user_id=message.user_id,
+                    chat_id=chat_id,
+                    user_id=user_id,
                 )
-            dialog_state.last_message_id = message.message_id
+            dialog_state.last_message_id = message_id
             dialog_state.last_activity = datetime.utcnow()
             dialog_state.message_count += 1
             await self.redis.save_dialog_state(dialog_state)
 
             # Получаем ответ от агента
-            answer = await self._agent_client.get_answer(message.text)
+            answer = await self._agent_client.get_answer(text)
 
             # Отправляем ответ в Avito
             await self.avito.send_message(
-                chat_id=message.chat_id,
+                chat_id=chat_id,
                 text=answer
             )
 
-            # Отмечаем чат как прочитанный
-            await self.avito.mark_chat_as_read(message.chat_id)
-
-            # Помечаем как обработанное
-            await self.redis.complete_message(message.message_id)
-
             logger.info(
-                f'Сообщение {message.message_id} '
+                f'Сообщение {message_id} '
                 f'успешно обработано'
             )
 
-            # Обновляем статистику
-            await self._update_stats()
+            # Обновляем статистику (успешная обработка)
+            await self._update_stats(
+                increment_total=True,
+                increment_completed=True
+            )
 
         except Exception as e:
             logger.error(
                 f'Ошибка при обработке сообщения '
-                f'{message.message_id}: {e}'
+                f'{message_id}: {e}'
             )
-            # Помечаем как ошибочное
-            await self.redis.fail_message(message.message_id, str(e))
-            await self._update_stats(last_error=str(e))
+            # Обновляем статистику (ошибка)
+            await self._update_stats(
+                increment_total=True,
+                increment_failed=True,
+                last_error=str(e)
+            )
 
     async def _update_stats(
         self,
         last_poll_time: Optional[datetime] = None,
-        last_error: Optional[str] = None
+        last_error: Optional[str] = None,
+        increment_total: bool = False,
+        increment_completed: bool = False,
+        increment_failed: bool = False
     ):
         """Обновить статистику.
 
         Args:
             last_poll_time: Время последнего опроса
             last_error: Последняя ошибка
+            increment_total: Увеличить счетчик всего сообщений
+            increment_completed: Увеличить счетчик успешных
+            increment_failed: Увеличить счетчик ошибок
         """
         stats = await self.redis.get_stats()
-        stats.pending_messages = await self.redis.get_queue_length()
-        stats.processing_messages = await self.redis.get_processing_count()
         stats.active_dialogs = await self.redis.get_active_dialogs_count()
+
+        if increment_total:
+            stats.total_messages += 1
+        if increment_completed:
+            stats.completed_messages += 1
+        if increment_failed:
+            stats.failed_messages += 1
 
         if last_poll_time:
             stats.last_poll_time = last_poll_time
@@ -295,11 +326,20 @@ async def main():
         await worker.start()
     except KeyboardInterrupt:
         logger.info('Worker остановлен пользователем')
+    except asyncio.CancelledError:
+        logger.info('Worker остановлен (cancelled)')
     except Exception as e:
         logger.error(f'Критическая ошибка: {e}')
         sys.exit(1)
     finally:
-        await redis_client.disconnect()
+        try:
+            await redis_client.disconnect()
+        except asyncio.CancelledError:
+            logger.debug(
+                'Redis disconnect cancelled (это нормально при shutdown)'
+            )
+        except Exception as e:
+            logger.error(f'Ошибка при отключении Redis: {e}')
 
 
 if __name__ == '__main__':

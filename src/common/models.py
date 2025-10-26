@@ -63,14 +63,6 @@ class WorkerStats(BaseModel):
         default=0,
         description='Всего обработано сообщений'
     )
-    pending_messages: int = Field(
-        default=0,
-        description='Сообщений в очереди'
-    )
-    processing_messages: int = Field(
-        default=0,
-        description='Сообщений в обработке'
-    )
     completed_messages: int = Field(
         default=0,
         description='Успешно обработано'
